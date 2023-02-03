@@ -1,0 +1,46 @@
+.technical-wrap {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 29px;
+}
+
+.technical-title {
+  font-family: HelveticaNeue;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.technical-wrap input {
+  background: #ffffff;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+  height: 48px;
+  margin-top: 8px;
+}
+
+.technical-wrap input::placeholder {
+  font-family: HelveticaNeue;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  color: rgba(0, 0, 0, 0.6);
+  padding-top: 13px;
+  padding-left: 16px;
+}
+
+.technical-wrap p {
+  font-family: HelveticaNeue;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  color: #2e2e2e;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
