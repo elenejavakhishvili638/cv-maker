@@ -1,0 +1,55 @@
+.main-page {
+  position: relative;
+  background-image: url("../assets/images/shutterstock_2189773743\ 1.png");
+  height: 100vh;
+  width: 100vw;
+}
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.RedberryLogo {
+  width: 236px;
+  height: 38px;
+  display: flex;
+  margin-top: 25px;
+  margin-left: 70px;
+}
+
+.hr {
+  height: 0px;
+  left: 70px;
+  right: 70px;
+  top: 89px;
+  position: absolute;
+  border: 1px solid #1a1a1a;
+}
+
+.logo {
+  position: absolute;
+  width: 299px;
+  height: 299px;
+  left: 1076px;
+  top: 473px;
+}
+
+.add-resume {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 464px;
+  height: 60px;
+  left: calc(50% - 464px / 2);
+  top: 513px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ffffff;
+  text-decoration: none;
+}
