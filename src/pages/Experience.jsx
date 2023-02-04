@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 
 const Experience = () => {
   const location = useLocation();
-  const { infoFormData } = location.state;
+  const { infoFormData, image } = location.state;
 
   console.log(infoFormData);
   return (
@@ -14,7 +14,14 @@ const Experience = () => {
       <div className="experience-card"></div>
       <div className="info-experience-resume">
         <div className="private-info-resume-wrap">
-          <Resume />
+          <Resume
+            firstName={infoFormData.name}
+            lastName={infoFormData.surname}
+            email={infoFormData.email}
+            phone={infoFormData.phone_number}
+            aboutMe={infoFormData.about_me}
+            image={image}
+          />
           <Footer />
         </div>
       </div>

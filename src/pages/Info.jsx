@@ -22,6 +22,17 @@ const Info = () => {
   });
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const data = localStorage.getItem("infoFormdata");
+    if (data) {
+      setInfoFormData(JSON.parse(data));
+    }
+    const image = localStorage.getItem("image");
+    if (image) {
+      setImage(image);
+    }
+  }, []);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     const newInfoFormData = { ...infoFormData, [name]: value };
@@ -31,6 +42,8 @@ const Info = () => {
     const errors = privateValidation(infoFormData);
 
     setErrors(errors);
+
+    localStorage.setItem("infoFormdata", JSON.stringify(infoFormData));
   };
 
   const handleImageUpload = (event) => {
@@ -40,7 +53,16 @@ const Info = () => {
 
     const img = event.target.files[0];
 
-    setImage(URL.createObjectURL(img));
+    const reader = new FileReader();
+    // setImage(reader.result);
+    reader.readAsDataURL(img);
+    console.log(reader.result);
+    reader.onload = () => {
+      setImage(reader.result);
+      localStorage.setItem("image", reader.result);
+    };
+
+    // setImage(URL.createObjectURL(img));
   };
 
   const handleSubmit = (event) => {
@@ -60,7 +82,7 @@ const Info = () => {
     console.log("dd");
 
     navigate("/experience", {
-      state: { infoFormData: infoFormData },
+      state: { infoFormData: infoFormData, image: image },
     });
   };
 
