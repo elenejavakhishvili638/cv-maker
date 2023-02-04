@@ -4,14 +4,22 @@ import "./experienceForm.css";
 import ExperienceFormComponent from "./ExperienceFormComponent";
 
 const ExperienceForm = ({ formCount, handleFormCount }) => {
+  // console.log(formCount);
   return (
     <form className="experience-form">
-      <ExperienceFormComponent />
-      {/* {[...Array(formCount)].map((_, index) => {
+      {/* <ExperienceFormComponent /> */}
+      {[...Array(formCount)].map((_, index) => {
         return <ExperienceFormComponent key={index} />;
-      })} */}
+      })}
+
       <div className="experience-btn-container">
-        <button className="add-information">მეტი გამოცდილების დამატება</button>
+        <button
+          className="add-information"
+          type="button"
+          onClick={handleFormCount}
+        >
+          მეტი გამოცდილების დამატება
+        </button>
         <div className="next-back-page-button">
           <Link to="/info" className="first-next">
             უკან
