@@ -1,0 +1,35 @@
+.experience-btn-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-information {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 289px;
+  height: 48px;
+  background: #62a1eb;
+  border-radius: 4px;
+  border: none;
+  font-family: helvaticaneue;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  margin-top: 45px;
+}
+
+.next-back-page-button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 207px;
+  margin-bottom: 65px;
+}
+
+.first-next {
+  text-decoration: none;
+}

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import BigInput from "./BigInput";
+import BigInput from "./shared/BigInput";
 import "./information.css";
-import SmallInput from "./SmallInput";
+import SmallInput from "./shared/SmallInput";
 import {
   BsExclamationTriangleFill,
   BsFillCheckCircleFill,

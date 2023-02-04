@@ -1,0 +1,38 @@
+.calendar-input-container {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.calendar-input-container label {
+  font-family: HelveticaNeue;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.calendar-input-label {
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.calendar-input-container input {
+  width: 371px;
+  height: 48px;
+  background: #ffffff;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.calendar-input::placeholder {
+  font-family: HelveticaNeue;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  /* color: rgba(0, 0, 0, 0.6); */
+  padding-left: 5px;
+  color: red;
+}

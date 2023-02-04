@@ -3,11 +3,11 @@ import "./info.css";
 import { Link, useNavigate } from "react-router-dom";
 import privateValidation from "../validations/PrivateInformationValidation";
 
-import Title from "../components/Title";
+import Title from "../components/shared/Title";
 import Vector from "../assets/images/Vector.png";
 import Information from "../components/Information";
 import Resume from "../components/Resume";
-import Footer from "../components/Footer";
+import Footer from "../components/shared/Footer";
 
 const Info = () => {
   const [image, setImage] = useState();
