@@ -2,11 +2,22 @@ import React, { useRef } from "react";
 import BigInput from "./BigInput";
 import "./information.css";
 import SmallInput from "./SmallInput";
+import {
+  BsExclamationTriangleFill,
+  BsFillCheckCircleFill,
+} from "react-icons/bs";
 
-const Information = ({ handleChange, data, handleImageUpload, handleBlur }) => {
+const Information = ({
+  handleChange,
+  data,
+  handleImageUpload,
+  errors,
+  image,
+  handleSubmit,
+}) => {
   const ref = useRef(null);
 
-  console.log(data);
+  // console.log(errors);
 
   const pickImageHandler = (event) => {
     event.preventDefault();
@@ -14,7 +25,7 @@ const Information = ({ handleChange, data, handleImageUpload, handleBlur }) => {
   };
 
   return (
-    <form className="info-form">
+    <form className="info-form" onSubmit={handleSubmit}>
       <div className="full-name">
         <SmallInput
           label="სახელი"
@@ -23,7 +34,7 @@ const Information = ({ handleChange, data, handleImageUpload, handleBlur }) => {
           value={data.name}
           placeholder="ანზორ"
           handleChange={handleChange}
-          handleBlur={handleBlur}
+          error={errors.name}
         />
         <SmallInput
           label="გვარი"
@@ -32,6 +43,7 @@ const Information = ({ handleChange, data, handleImageUpload, handleBlur }) => {
           value={data.surname}
           placeholder="მუმლაძე"
           handleChange={handleChange}
+          error={errors.surname}
         />
       </div>
       <div className="image-paragraph">
@@ -48,6 +60,14 @@ const Information = ({ handleChange, data, handleImageUpload, handleBlur }) => {
         <button className="upload-button" onClick={pickImageHandler}>
           ატვირთვა
         </button>
+        {image ? (
+          <BsFillCheckCircleFill className="success-logo" />
+        ) : (
+          errors.image &&
+          errors.image !== "Success" && (
+            <BsExclamationTriangleFill className="invalid-logo" />
+          )
+        )}
       </div>
       <div className="textarea">
         <p>ჩემ შესახებ (არასავალდებულო)</p>
@@ -68,6 +88,7 @@ const Information = ({ handleChange, data, handleImageUpload, handleBlur }) => {
           placeholder="anzor666@redberry.ge"
           handleChange={handleChange}
           value={data.email}
+          error={errors.email}
         />
         <BigInput
           label="მობილური ნომერი"
@@ -77,38 +98,16 @@ const Information = ({ handleChange, data, handleImageUpload, handleBlur }) => {
           placeholder="+995 551 12 34 56"
           handleChange={handleChange}
           value={data.phone_number}
+          error={errors.phone_number}
         />
       </div>
       <div className="next-page-button">
-        <button className="first-next">შემდეგი</button>
+        <button type="submit" className="first-next">
+          შემდეგი
+        </button>
       </div>
     </form>
   );
 };
 
 export default Information;
-
-{
-  /* <div className="first-name">
-          <label htmlFor="firstName">სახელი</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            placeholder="ანზორ"
-          />
-          <p>მინიმუმ 2 ასო, ქართული ასოები</p>
-        </div> */
-}
-{
-  /* <div className="last-name">
-          <label htmlFor="lastName">გვარი</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            placeholder="მუმლაძე"
-          />
-          <p>მინიმუმ 2 ასო, ქართული ასოები</p>
-        </div> */
-}

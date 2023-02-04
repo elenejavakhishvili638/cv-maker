@@ -16,12 +16,21 @@
 }
 
 .technical-wrap input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.technical-wrap-input {
   background: #ffffff;
   border: 1px solid #bcbcbc;
   border-radius: 4px;
   height: 48px;
   margin-top: 8px;
   outline: none;
+  width: 100%;
 }
 
 .technical-wrap input:focus {
@@ -35,8 +44,8 @@
   font-size: 16px;
   line-height: 21px;
   color: rgba(0, 0, 0, 0.6);
-  padding-top: 13px;
-  padding-left: 16px;
+  /* padding-top: 13px; */
+  /* padding-left: 16px; */
 }
 
 .technical-wrap p {
@@ -48,4 +57,41 @@
   color: #2e2e2e;
   margin-top: 8px;
   margin-bottom: 0;
+}
+
+/* Errors */
+
+.big-success-logo {
+  margin-right: 15px;
+  color: #98e37e;
+  width: 16.5px;
+  height: 16.5px;
+}
+
+.big-input-success {
+  border: 1px solid #98e37e;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.big-input-error {
+  border: 1px solid #ef5050;
+  width: 100%;
+}
+
+.big-label-error {
+  color: #e52f2f;
+}
+
+.big-input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.big-invalid-logo {
+  color: #f02424;
+  height: 19px;
+  width: 21px;
 }

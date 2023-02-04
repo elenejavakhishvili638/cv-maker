@@ -39,6 +39,7 @@
   font-size: 14px;
   line-height: 17px;
   color: #ffffff;
+  margin-right: 20px;
 }
 
 .about-me {
@@ -116,4 +117,19 @@
 
 .first-next:focus {
   background-color: #512faf;
+}
+
+/* Errors */
+
+.success-logo {
+  margin-right: 15px;
+  color: #98e37e;
+  width: 16.5px;
+  height: 16.5px;
+}
+
+.invalid-logo {
+  color: #f02424;
+  height: 19px;
+  width: 21px;
 }

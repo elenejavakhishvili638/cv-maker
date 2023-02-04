@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./info.css";
-import { Link } from "react-router-dom";
-import { IoIosArrowBack } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom";
+import privateValidation from "../validations/PrivateInformationValidation";
 
 import Title from "../components/Title";
 import Vector from "../assets/images/Vector.png";
@@ -11,7 +11,7 @@ import Footer from "../components/Footer";
 
 const Info = () => {
   const [image, setImage] = useState();
-  const [previewImg, setPreviewImage] = useState();
+  const [errors, setErrors] = useState({});
   const [infoFormData, setInfoFormData] = useState({
     name: "",
     surname: "",
@@ -20,12 +20,17 @@ const Info = () => {
     image: "",
     about_me: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     const newInfoFormData = { ...infoFormData, [name]: value };
 
     setInfoFormData(newInfoFormData);
+
+    const errors = privateValidation(infoFormData);
+
+    setErrors(errors);
   };
 
   const handleImageUpload = (event) => {
@@ -38,16 +43,25 @@ const Info = () => {
     setImage(URL.createObjectURL(img));
   };
 
-  const handleBlur = () => {
-    if (!infoFormData.name) {
-      console.log("quired");
-    } else {
-      console.log("no error");
-    }
-  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const errors = privateValidation(infoFormData);
 
-  const handleSUbmit = (event) => {
-    // event.preventDefault()
+    setErrors(errors);
+    if (errors && Object.keys(errors).length !== 0) {
+      for (const [key, value] of Object.entries(errors)) {
+        console.log(key, value);
+        if (value !== "Success") {
+          return;
+        }
+      }
+    }
+
+    console.log("dd");
+
+    navigate("/experience", {
+      state: { infoFormData: infoFormData },
+    });
   };
 
   return (
@@ -66,7 +80,9 @@ const Info = () => {
             handleChange={handleChange}
             data={infoFormData}
             handleImageUpload={handleImageUpload}
-            handleBlur={handleBlur}
+            errors={errors}
+            image={image}
+            handleSubmit={handleSubmit}
           />
         </div>
       </div>
@@ -88,3 +104,22 @@ const Info = () => {
 };
 
 export default Info;
+
+// const handleBlur = async () => {
+//   if (!infoFormData.name) {
+//     console.log("quired");
+//   } else {
+//     console.log("no error");
+//   }
+//   const isValid = await privateSchema.isValid(infoFormData);
+//   console.log(isValid);
+// };
+
+// useEffect(() => {
+//   let isValid;
+//   const fun = async () => {
+//     isValid = await privateSchema.isValid(infoFormData);
+//   };
+//   fun();
+//   console.log(isValid);
+// }, [infoFormData]);
