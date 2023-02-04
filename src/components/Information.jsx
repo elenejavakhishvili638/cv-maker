@@ -3,28 +3,35 @@ import BigInput from "./BigInput";
 import "./information.css";
 import SmallInput from "./SmallInput";
 
-const Information = () => {
+const Information = ({ handleChange, data, handleImageUpload, handleBlur }) => {
   const ref = useRef(null);
 
-  const pickImageHandler = () => {
+  console.log(data);
+
+  const pickImageHandler = (event) => {
+    event.preventDefault();
     ref.current.click();
   };
 
   return (
-    // <div></div>
     <form className="info-form">
       <div className="full-name">
         <SmallInput
           label="სახელი"
           type="text"
-          name="firstName"
+          name="name"
+          value={data.name}
           placeholder="ანზორ"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
         />
         <SmallInput
           label="გვარი"
           type="text"
-          name="lastName"
+          name="surname"
+          value={data.surname}
           placeholder="მუმლაძე"
+          handleChange={handleChange}
         />
       </div>
       <div className="image-paragraph">
@@ -33,7 +40,10 @@ const Information = () => {
           type="file"
           ref={ref}
           style={{ display: "none" }}
-          accept=".jpg,.png,.jpeg"
+          name="image"
+          // accept=".jpg,.png,.jpeg"
+          accept="image/*"
+          onChange={handleImageUpload}
         />
         <button className="upload-button" onClick={pickImageHandler}>
           ატვირთვა
@@ -41,22 +51,32 @@ const Information = () => {
       </div>
       <div className="textarea">
         <p>ჩემ შესახებ (არასავალდებულო)</p>
-        <textarea className="about-me" placeholder="ზოგადი ინფო შენ შესახებ" />
+        <textarea
+          onChange={handleChange}
+          name="about_me"
+          className="about-me"
+          value={data.about_me}
+          placeholder="ზოგადი ინფო შენ შესახებ"
+        />
       </div>
       <div className="technical-information">
         <BigInput
           label="ელ.ფოსტა"
-          type="text"
+          type="email"
           name="email"
           text="უნდა მთავრდებოდეს @redberry.ge-ით"
           placeholder="anzor666@redberry.ge"
+          handleChange={handleChange}
+          value={data.email}
         />
         <BigInput
           label="მობილური ნომერი"
           type="text"
-          name="number"
+          name="phone_number"
           text="უნდა აკმაყოფილებდეს ქართული მობილური ნომრის ფორმატს"
           placeholder="+995 551 12 34 56"
+          handleChange={handleChange}
+          value={data.phone_number}
         />
       </div>
       <div className="next-page-button">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./info.css";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
@@ -10,6 +10,46 @@ import Resume from "../components/Resume";
 import Footer from "../components/Footer";
 
 const Info = () => {
+  const [image, setImage] = useState();
+  const [previewImg, setPreviewImage] = useState();
+  const [infoFormData, setInfoFormData] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    phone_number: "",
+    image: "",
+    about_me: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    const newInfoFormData = { ...infoFormData, [name]: value };
+
+    setInfoFormData(newInfoFormData);
+  };
+
+  const handleImageUpload = (event) => {
+    const dataWithNewImage = { ...infoFormData, image: event.target.files[0] };
+
+    setInfoFormData(dataWithNewImage);
+
+    const img = event.target.files[0];
+
+    setImage(URL.createObjectURL(img));
+  };
+
+  const handleBlur = () => {
+    if (!infoFormData.name) {
+      console.log("quired");
+    } else {
+      console.log("no error");
+    }
+  };
+
+  const handleSUbmit = (event) => {
+    // event.preventDefault()
+  };
+
   return (
     <div className="private-info">
       <div className="private-info-card">
@@ -19,21 +59,26 @@ const Info = () => {
               <img src={Vector} alt="vector" />
             </div>
           </Link>
-
           <Title title="პირადი ინფო" page="1" />
         </div>
         <div className="information">
-          <Information />
+          <Information
+            handleChange={handleChange}
+            data={infoFormData}
+            handleImageUpload={handleImageUpload}
+            handleBlur={handleBlur}
+          />
         </div>
       </div>
       <div className="private-info-resume">
         <div className="private-info-resume-wrap">
           <Resume
-            firstName="ანზორ"
-            lastName="მუმლაძე"
-            email="anzor666@gmail.com"
-            phone="+995 597 63 45 16"
-            aboutMe="ძალიან მიყვარს დიზაინის კეთება. დილით ადრე რომ ავდგები გამამხნევებელი ვარჯიშების მაგიერ დიზაინს ვაკეთებ."
+            firstName={infoFormData.name}
+            lastName={infoFormData.surname}
+            email={infoFormData.email}
+            phone={infoFormData.phone_number}
+            aboutMe={infoFormData.about_me}
+            image={image}
           />
           <Footer />
         </div>

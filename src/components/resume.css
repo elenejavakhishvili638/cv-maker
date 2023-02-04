@@ -8,6 +8,10 @@
   font-family: HelveticaNeue;
 }
 
+.person-information {
+  width: 432px;
+}
+
 .person-information h1 {
   font-style: normal;
   font-weight: 700;
@@ -75,6 +79,8 @@
   margin-top: 15px;
   color: #000000;
   margin-bottom: 0;
+  width: 432px;
+  overflow-wrap: break-word;
 }
 
 .person-image-container {
@@ -85,7 +91,7 @@
 .person-image {
   width: 246px;
   height: 246px;
-
+  object-fit: contain;
   background: #d9d9d9;
   border-radius: 133px;
 }
