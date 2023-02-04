@@ -1,51 +1,49 @@
-.technical-wrap {
+.first-name {
   display: flex;
+
   flex-direction: column;
-  margin-bottom: 29px;
 }
 
-.technical-title {
+.first-name label {
+  /* margin-top: 77px; */
   font-family: HelveticaNeue;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 21px;
-  display: flex;
-  align-items: center;
   color: #000000;
 }
 
-.technical-wrap input {
+.first-name input {
+  width: 371px;
+  height: 48px;
+
   background: #ffffff;
   border: 1px solid #bcbcbc;
   border-radius: 4px;
-  height: 48px;
   margin-top: 8px;
   outline: none;
 }
 
-.technical-wrap input:focus {
+.first-name input:focus {
   border: 2px solid #bcbcbc;
 }
 
-.technical-wrap input::placeholder {
+.first-name input::placeholder {
   font-family: HelveticaNeue;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 21px;
   color: rgba(0, 0, 0, 0.6);
-  padding-top: 13px;
-  padding-left: 16px;
 }
 
-.technical-wrap p {
+.first-name p {
   font-family: HelveticaNeue;
   font-style: normal;
   font-weight: 300;
   font-size: 14px;
   line-height: 21px;
   color: #2e2e2e;
-  margin-top: 8px;
   margin-bottom: 0;
 }

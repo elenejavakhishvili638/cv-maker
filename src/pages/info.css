@@ -54,3 +54,17 @@
   flex-direction: column;
   margin-top: 77px;
 }
+
+.private-info-resume {
+  flex-direction: column;
+  width: 100%;
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+.private-info-resume-wrap {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}

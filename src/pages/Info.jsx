@@ -6,6 +6,8 @@ import { IoIosArrowBack } from "react-icons/io";
 import Title from "../components/Title";
 import Vector from "../assets/images/Vector.png";
 import Information from "../components/Information";
+import Resume from "../components/Resume";
+import Footer from "../components/Footer";
 
 const Info = () => {
   return (
@@ -24,7 +26,18 @@ const Info = () => {
           <Information />
         </div>
       </div>
-      <div className="private-info-resume"></div>
+      <div className="private-info-resume">
+        <div className="private-info-resume-wrap">
+          <Resume
+            firstName="ანზორ"
+            lastName="მუმლაძე"
+            email="anzor666@gmail.com"
+            phone="+995 597 63 45 16"
+            aboutMe="ძალიან მიყვარს დიზაინის კეთება. დილით ადრე რომ ავდგები გამამხნევებელი ვარჯიშების მაგიერ დიზაინს ვაკეთებ."
+          />
+          <Footer />
+        </div>
+      </div>
     </div>
   );
 };

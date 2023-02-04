@@ -1,4 +1,5 @@
 import React from "react";
+import "./smallInput.css";
 
 const SmallInput = ({ label, type, placeholder, name }) => {
   return (

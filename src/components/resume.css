@@ -1,0 +1,91 @@
+.personal-resume {
+  width: 667px;
+  /* justify-content: space-between; */
+  align-items: center;
+  display: flex;
+  margin-left: 80px;
+  margin-top: 68px;
+  font-family: HelveticaNeue;
+}
+
+.person-information h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 42px;
+  color: #f93b1d;
+  margin: 0;
+  font-variant: small-caps;
+}
+
+.email {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  margin-top: 17px;
+}
+
+.phone {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.email p,
+.phone p {
+  margin: 0;
+  margin-left: 11px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #1a1a1a;
+}
+
+.email svg,
+.phone svg {
+  height: 16.67px;
+  width: 16.67px;
+  color: #898989;
+}
+
+.phone {
+  margin-bottom: 34px;
+}
+
+.about-me-text {
+  margin-top: 34px;
+}
+
+.about-me-text h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #f93b1d;
+  margin: 0;
+  font-variant: small-caps;
+}
+
+.about-me-text p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  margin-top: 15px;
+  color: #000000;
+  margin-bottom: 0;
+}
+
+.person-image-container {
+  display: flex;
+  /* margin-bottom: 786px; */
+}
+
+.person-image {
+  width: 246px;
+  height: 246px;
+
+  background: #d9d9d9;
+  border-radius: 133px;
+}
