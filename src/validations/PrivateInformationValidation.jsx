@@ -10,7 +10,7 @@
 
 // export default privateSchema;
 
-const privateValidation = (data) => {
+const privateValidation = (data, image) => {
   const errors = {};
   const noErrors = {};
   const gerorgianCharacters = /^[ა-ჰ]+$/;
@@ -67,10 +67,10 @@ const privateValidation = (data) => {
     errors.phone_number = "Success";
   }
 
-  if (!data.image) {
+  if (!image) {
     errors.image = "Image upload is neccessary";
   }
-  if (data.image) {
+  if (image) {
     errors.image = "Success";
   }
 

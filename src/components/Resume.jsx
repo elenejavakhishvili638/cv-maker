@@ -12,8 +12,9 @@ const Resume = ({
   aboutMe,
   image,
   experienceState,
+  experiencePart,
 }) => {
-  console.log(experienceState);
+  // console.log(experienceState);
   return (
     <div className="resume-wrap">
       <div className="personal-resume">
@@ -46,7 +47,7 @@ const Resume = ({
           </div>
         )}
       </div>
-      {/* {experienceState.length !== 0 && (
+      {experiencePart && (
         <div className="experience-resume">
           <hr className="resume-hr" />
           <h3>გამოცდილება</h3>
@@ -55,7 +56,7 @@ const Resume = ({
               return <ExperienceResume key={index} form={form} />;
             })}
         </div>
-      )} */}
+      )}
     </div>
   );
 };

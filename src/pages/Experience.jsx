@@ -10,7 +10,7 @@ import Vector from "../assets/images/Vector.png";
 const Experience = () => {
   const location = useLocation();
   const { infoFormData, image } = location.state;
-
+  const [experiencePart, setExperiencePart] = useState(false);
   const [experienceState, setExperienceState] = useState([
     {
       position: "",
@@ -35,6 +35,12 @@ const Experience = () => {
     if (data) {
       setExperienceState(JSON.parse(data));
     }
+  }, []);
+
+  useEffect(() => {
+    setExperiencePart(
+      Object.values(experienceState).some((value) => value !== "")
+    );
   }, []);
 
   const handleChange = (event, index) => {
@@ -96,6 +102,7 @@ const Experience = () => {
               aboutMe={infoFormData && infoFormData.about_me}
               image={image}
               experienceState={experienceState}
+              experiencePart={experiencePart}
             />
             <Footer />
           </div>

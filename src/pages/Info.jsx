@@ -32,20 +32,22 @@ const Info = () => {
     if (image) {
       setImage(image);
     }
+
+    // const errors = privateValidation(infoFormData, image);
+
+    // setErrors(errors);
   }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    const newInfoFormData = { ...infoFormData, [name]: value };
+    const newInfoFormData = {
+      ...infoFormData,
+      [name]: value,
+    };
     console.log(name, value);
     setInfoFormData(newInfoFormData);
 
-    // setInfoFormData((prevState) => {
-    //   // const formData = { ...prevState, [name]: value };
-    //   return { ...prevState, [name]: value };
-    // });
-
-    const errors = privateValidation(infoFormData);
+    const errors = privateValidation(infoFormData, image);
 
     setErrors(errors);
 
@@ -73,7 +75,8 @@ const Info = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const errors = privateValidation(infoFormData);
+    const errors = privateValidation(infoFormData, image);
+    console.log("dd");
 
     setErrors(errors);
     if (errors && Object.keys(errors).length !== 0) {
@@ -84,8 +87,6 @@ const Info = () => {
         }
       }
     }
-
-    console.log("dd");
 
     navigate("/experience", {
       state: { infoFormData: infoFormData, image: image },
