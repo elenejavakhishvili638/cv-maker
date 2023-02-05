@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./info.css";
 import { Link, useNavigate } from "react-router-dom";
 import privateValidation from "../validations/PrivateInformationValidation";
@@ -21,6 +21,7 @@ const Info = () => {
     about_me: "",
   });
   const navigate = useNavigate();
+  // const inputRef = useRef(null);
 
   useEffect(() => {
     const data = localStorage.getItem("infoFormdata");
@@ -36,8 +37,13 @@ const Info = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     const newInfoFormData = { ...infoFormData, [name]: value };
-
+    console.log(name, value);
     setInfoFormData(newInfoFormData);
+
+    // setInfoFormData((prevState) => {
+    //   // const formData = { ...prevState, [name]: value };
+    //   return { ...prevState, [name]: value };
+    // });
 
     const errors = privateValidation(infoFormData);
 
@@ -72,7 +78,7 @@ const Info = () => {
     setErrors(errors);
     if (errors && Object.keys(errors).length !== 0) {
       for (const [key, value] of Object.entries(errors)) {
-        console.log(key, value);
+        // console.log(key, value);
         if (value !== "Success") {
           return;
         }
@@ -126,22 +132,3 @@ const Info = () => {
 };
 
 export default Info;
-
-// const handleBlur = async () => {
-//   if (!infoFormData.name) {
-//     console.log("quired");
-//   } else {
-//     console.log("no error");
-//   }
-//   const isValid = await privateSchema.isValid(infoFormData);
-//   console.log(isValid);
-// };
-
-// useEffect(() => {
-//   let isValid;
-//   const fun = async () => {
-//     isValid = await privateSchema.isValid(infoFormData);
-//   };
-//   fun();
-//   console.log(isValid);
-// }, [infoFormData]);

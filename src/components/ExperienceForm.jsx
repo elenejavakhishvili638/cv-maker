@@ -3,21 +3,23 @@ import { Link } from "react-router-dom";
 import "./experienceForm.css";
 import ExperienceFormComponent from "./ExperienceFormComponent";
 
-const ExperienceForm = ({ formCount, handleFormCount }) => {
-  // console.log(formCount);
+const ExperienceForm = ({ experienceState, addForm, handleChange }) => {
   return (
     <form className="experience-form">
-      {/* <ExperienceFormComponent /> */}
-      {[...Array(formCount)].map((_, index) => {
-        return <ExperienceFormComponent key={index} />;
-      })}
+      {experienceState &&
+        experienceState.map((form, index) => {
+          return (
+            <ExperienceFormComponent
+              key={index}
+              form={form}
+              index={index}
+              handleChange={handleChange}
+            />
+          );
+        })}
 
       <div className="experience-btn-container">
-        <button
-          className="add-information"
-          type="button"
-          onClick={handleFormCount}
-        >
+        <button className="add-information" type="button" onClick={addForm}>
           მეტი გამოცდილების დამატება
         </button>
         <div className="next-back-page-button">

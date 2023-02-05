@@ -3,8 +3,8 @@
   /* justify-content: space-between; */
   align-items: center;
   display: flex;
-  margin-left: 80px;
-  margin-top: 68px;
+  /* margin-left: 80px;
+  margin-top: 68px; */
   font-family: HelveticaNeue;
 }
 
@@ -94,4 +94,22 @@
   object-fit: contain;
   background: #d9d9d9;
   border-radius: 133px;
+}
+
+.resume-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 667px;
+
+  align-items: center;
+  margin-left: 80px;
+  margin-top: 68px;
+  font-family: HelveticaNeue;
+}
+
+.resume-hr {
+  width: 662px;
+  height: 0px;
+  border: 1px solid #c8c8c8;
+  margin-top: 47px;
 }

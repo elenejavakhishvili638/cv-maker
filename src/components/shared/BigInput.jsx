@@ -7,15 +7,15 @@ import {
 
 const BigInput = ({
   label,
-  name,
   type,
-  text,
+  name,
   placeholder,
+  text,
   value,
   handleChange,
   error,
+  index,
 }) => {
-  // console.log(error);
   return (
     <div className="technical-wrap">
       <label htmlFor="technical-title">{label}</label>
@@ -35,7 +35,7 @@ const BigInput = ({
             placeholder={placeholder}
             name={name}
             value={value}
-            onChange={handleChange}
+            onChange={(event) => handleChange(event, index)}
           />
           {(error && error !== "Success" ? (
             ""
