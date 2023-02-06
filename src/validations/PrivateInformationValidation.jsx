@@ -1,15 +1,3 @@
-// import * as yup from "yup";
-
-// const privateSchema = yup.object().shape({
-//   name: yup.string().min(2).required(),
-//   surname: yup.string().min(2).required(),
-//   image: yup.string().required(),
-//   email: yup.string().email().required(),
-//   phone_number: yup.string().required(),
-// });
-
-// export default privateSchema;
-
 const privateValidation = (data, image) => {
   const errors = {};
   const noErrors = {};

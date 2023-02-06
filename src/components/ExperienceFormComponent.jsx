@@ -3,7 +3,8 @@ import BigInput from "./shared/BigInput";
 import CalendarInput from "./shared/CalendarInput";
 import "./ExperienceFormComponent.css";
 
-const ExperienceFormComponent = ({ handleChange, form, index }) => {
+const ExperienceFormComponent = ({ handleChange, form, index, errors }) => {
+  // console.log(errors);
   return (
     <>
       <div className="experience-description">

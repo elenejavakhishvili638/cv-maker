@@ -6,11 +6,13 @@ import Footer from "../components/shared/Footer";
 import Title from "../components/shared/Title";
 import ExperienceForm from "../components/ExperienceForm";
 import Vector from "../assets/images/Vector.png";
+import experienceValidation from "../validations/ExperienceValidation";
 
 const Experience = () => {
   const location = useLocation();
   const { infoFormData, image } = location.state;
   const [experiencePart, setExperiencePart] = useState(false);
+  const [errors, setErrors] = useState([]);
   const [experienceState, setExperienceState] = useState([
     {
       position: "",
@@ -39,9 +41,17 @@ const Experience = () => {
 
   useEffect(() => {
     setExperiencePart(
-      Object.values(experienceState).some((value) => value !== "")
+      Object.values(experienceState).some((value) => {
+        if (value !== "") {
+          return true;
+        } else {
+          return false;
+        }
+      })
     );
-  }, []);
+  }, [experienceState]);
+
+  // console.log(experiencePart);
 
   const handleChange = (event, index) => {
     // console.log(event);
@@ -51,6 +61,16 @@ const Experience = () => {
     setExperienceState(newForms);
     const forms = { ...twoPartFormData, experiences: newForms };
     setTwoPartFormData(forms);
+
+    newForms.forEach((form, index) => {
+      const formError = experienceValidation(form);
+      errors[index] = formError;
+    });
+    console.log(errors);
+    // const errors = experienceValidation(newForms);
+
+    // console.log("errors", errors);
+    setErrors(errors);
 
     localStorage.setItem("experienceState", JSON.stringify(newForms));
   };
@@ -70,7 +90,7 @@ const Experience = () => {
     ]);
   };
 
-  console.log(twoPartFormData, "kk", experienceState);
+  // console.log(twoPartFormData, "kk", experienceState);
 
   return (
     <div className="experience-wrapper">
@@ -88,6 +108,7 @@ const Experience = () => {
             addForm={addForm}
             handleChange={handleChange}
             experienceState={experienceState}
+            errors={errors}
           />
         </div>
       </div>

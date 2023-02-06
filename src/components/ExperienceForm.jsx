@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./experienceForm.css";
 import ExperienceFormComponent from "./ExperienceFormComponent";
 
-const ExperienceForm = ({ experienceState, addForm, handleChange }) => {
+const ExperienceForm = ({ experienceState, addForm, handleChange, errors }) => {
   return (
     <form className="experience-form">
       {experienceState &&
@@ -14,6 +14,7 @@ const ExperienceForm = ({ experienceState, addForm, handleChange }) => {
               form={form}
               index={index}
               handleChange={handleChange}
+              errors={errors}
             />
           );
         })}
