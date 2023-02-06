@@ -36,7 +36,7 @@
   height: 48px;
 }
 
-.first-name input:focus {
+.first-name-input:focus {
   border: 2px solid #bcbcbc;
 }
 

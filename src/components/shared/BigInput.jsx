@@ -15,6 +15,7 @@ const BigInput = ({
   handleChange,
   error,
   index,
+  defultText,
 }) => {
   return (
     <div className="technical-wrap">
@@ -52,7 +53,7 @@ const BigInput = ({
               <BsExclamationTriangleFill className="big-invalid-logo" />
             )}
       </div>
-      <p>{text}</p>
+      <p>{(error === "Success" ? defultText : text) || defultText}</p>
     </div>
   );
 };

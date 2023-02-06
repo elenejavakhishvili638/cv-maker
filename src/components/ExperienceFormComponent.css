@@ -8,3 +8,29 @@
 .experience-hr {
   border: 1px solid #c1c1c1;
 }
+
+.experience-description-text-form {
+  /* width: 798px;
+  height: 103px;
+  background: #ffffff;
+  border-radius: 4px;
+  outline: none; */
+  border: 1px solid #bcbcbc;
+}
+
+.textarea textarea {
+  width: 798px;
+  height: 103px;
+  background: #ffffff;
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Errors */
+
+.experience-description-text-error {
+  border: 1px solid #ef5050;
+}
+.experience-description-text-correct {
+  border: 1px solid #98e37e;
+}

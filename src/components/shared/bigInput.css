@@ -33,7 +33,7 @@
   width: 100%;
 }
 
-.technical-wrap input:focus {
+.technical-wrap-input:focus {
   border: 2px solid #bcbcbc;
 }
 

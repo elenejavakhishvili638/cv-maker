@@ -1,27 +1,37 @@
 const experienceValidation = (data) => {
   let error = {};
   if (!data.position) {
-    error.position = "Position is required";
+    error.position = "შეავსეთ ველი";
   } else if (data.position.length <= 1) {
-    error.position = "Position should be longer than 1 character";
+    error.position = "ჩაწერეთ მინიმუმ 2 სიმბოლო";
+  } else {
+    error.position = "Success";
   }
 
   if (!data.employer) {
-    error.employer = "Employer is required";
+    error.employer = "შეავსეთ ველი";
   } else if (data.employer.length <= 1) {
-    error.employer = "Employer should be longer than 1 character";
+    error.employer = "ჩაწერეთ მინიმუმ 2 სიმბოლო";
+  } else {
+    error.employer = "Success";
   }
 
   if (!data.start_date) {
-    error.start_date = "Starting date is required";
+    error.start_date = "შეავსეთ ველი";
+  } else {
+    error.start_date = "Success";
   }
 
   if (!data.due_date) {
-    error.due_date = "Due date is required";
+    error.due_date = "შეავსეთ ველი";
+  } else {
+    error.due_date = "Success";
   }
 
   if (!data.description) {
-    error.description = "Description is required";
+    error.description = "შეავსეთ ველი";
+  } else {
+    error.description = "Success";
   }
 
   return error;

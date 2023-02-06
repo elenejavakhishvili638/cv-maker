@@ -21,18 +21,31 @@
   width: 371px;
   height: 48px;
   background: #ffffff;
-  border: 1px solid #bcbcbc;
+  /* border: 1px solid #bcbcbc; */
   border-radius: 4px;
   outline: none;
 }
 
-.calendar-input::placeholder {
+/* .calendar-input::placeholder {
   font-family: HelveticaNeue;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 21px;
-  /* color: rgba(0, 0, 0, 0.6); */
+  color: rgba(0, 0, 0, 0.6);
   padding-left: 5px;
-  color: red;
+} */
+
+.calendar-input-default {
+  border: 1px solid #bcbcbc;
+}
+
+/* Errors */
+
+.calendar-input-error {
+  border: 1px solid #ef5050;
+}
+
+.calendar-input-correct {
+  border: 1px solid #98e37e;
 }
