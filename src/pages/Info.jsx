@@ -81,7 +81,7 @@ const Info = () => {
     setErrors(errors);
     if (errors && Object.keys(errors).length !== 0) {
       for (const [key, value] of Object.entries(errors)) {
-        // console.log(key, value);
+        console.log(Object.entries(errors));
         if (value !== "Success") {
           return;
         }

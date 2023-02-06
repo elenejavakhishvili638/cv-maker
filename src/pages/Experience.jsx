@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./experience.css";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import Resume from "../components/Resume";
 import Footer from "../components/shared/Footer";
 import Title from "../components/shared/Title";
@@ -11,6 +11,7 @@ import experienceValidation from "../validations/ExperienceValidation";
 const Experience = () => {
   const location = useLocation();
   const { infoFormData, image } = location.state;
+  const navigate = useNavigate();
   const [experiencePart, setExperiencePart] = useState(false);
   const [errors, setErrors] = useState([]);
   const [experienceState, setExperienceState] = useState([
@@ -37,6 +38,9 @@ const Experience = () => {
     if (data) {
       setExperienceState(JSON.parse(data));
     }
+
+    const forms = { ...twoPartFormData, experiences: JSON.parse(data) };
+    setTwoPartFormData(forms);
   }, []);
 
   useEffect(() => {
@@ -59,8 +63,8 @@ const Experience = () => {
     const newForms = [...experienceState];
     newForms[index][name] = value;
     setExperienceState(newForms);
-    const forms = { ...twoPartFormData, experiences: newForms };
-    setTwoPartFormData(forms);
+    // const forms = { ...twoPartFormData, experiences: newForms };
+    // setTwoPartFormData(forms);
 
     newForms.forEach((form, index) => {
       const formError = experienceValidation(form);
@@ -75,8 +79,6 @@ const Experience = () => {
     localStorage.setItem("experienceState", JSON.stringify(newForms));
   };
 
-  // console.log(twoPartFormData);
-
   const addForm = () => {
     setExperienceState([
       ...experienceState,
@@ -90,7 +92,42 @@ const Experience = () => {
     ]);
   };
 
-  // console.log(twoPartFormData, "kk", experienceState);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const forms = { ...twoPartFormData, experiences: experienceState };
+    setTwoPartFormData(forms);
+    console.log(forms);
+
+    experienceState.forEach((form, index) => {
+      const formError = experienceValidation(form);
+      errors[index] = formError;
+    });
+    setErrors(errors);
+
+    let goToNextPage = true;
+    errors.forEach((error) => {
+      if (error && Object.keys(error).length !== 0) {
+        for (const [key, value] of Object.entries(error)) {
+          if (value !== "Success") {
+            goToNextPage = false;
+            break;
+          }
+        }
+      }
+    });
+
+    if (!goToNextPage) {
+      console.log("Pass the validation");
+      return;
+    }
+
+    navigate("/education", {
+      state: {
+        twoPartFormData: twoPartFormData,
+        // experienceState: experienceState,
+      },
+    });
+  };
 
   return (
     <div className="experience-wrapper">
@@ -109,6 +146,7 @@ const Experience = () => {
             handleChange={handleChange}
             experienceState={experienceState}
             errors={errors}
+            handleSubmit={handleSubmit}
           />
         </div>
       </div>

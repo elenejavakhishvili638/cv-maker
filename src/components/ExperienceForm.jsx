@@ -3,9 +3,15 @@ import { Link } from "react-router-dom";
 import "./experienceForm.css";
 import ExperienceFormComponent from "./ExperienceFormComponent";
 
-const ExperienceForm = ({ experienceState, addForm, handleChange, errors }) => {
+const ExperienceForm = ({
+  experienceState,
+  addForm,
+  handleChange,
+  errors,
+  handleSubmit,
+}) => {
   return (
-    <form className="experience-form">
+    <form className="experience-form" onSubmit={handleSubmit}>
       {experienceState &&
         experienceState.map((form, index) => {
           return (

@@ -1,0 +1,24 @@
+.info-education-resume-wrap {
+  width: 100%;
+  background-color: #f9f9f9;
+}
+
+.education-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.education-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+}
+
+/* .education {
+  display: flex;
+  width: 798px;
+  justify-content: center;
+  margin-left: 150px;
+  flex-direction: column;
+  margin-top: 77px;
+} */
