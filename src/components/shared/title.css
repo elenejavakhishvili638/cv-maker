@@ -24,7 +24,7 @@
   font-size: 24px;
   line-height: 29px;
   color: #1a1a1a;
-  font-variant: small-caps;
+  /* font-variant: small-caps; */
 }
 
 .title p {

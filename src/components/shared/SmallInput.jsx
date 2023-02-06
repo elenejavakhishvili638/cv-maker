@@ -1,9 +1,6 @@
 import React from "react";
 import "./smallInput.css";
-import {
-  BsExclamationTriangleFill,
-  BsFillCheckCircleFill,
-} from "react-icons/bs";
+import { BsFillCheckCircleFill } from "react-icons/bs";
 
 const SmallInput = ({
   label,
@@ -13,6 +10,8 @@ const SmallInput = ({
   value,
   handleChange,
   error,
+  text,
+  defultText,
 }) => {
   return (
     <div className="first-name">
@@ -52,7 +51,7 @@ const SmallInput = ({
           ""
         )) || ""}
       </div>
-      <p>მინიმუმ 2 ასო, ქართული ასოები</p>
+      <p>{(error === "Success" ? defultText : text) || defultText}</p>
     </div>
   );
 };

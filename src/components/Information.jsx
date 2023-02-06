@@ -35,6 +35,8 @@ const Information = ({
           placeholder="ანზორ"
           handleChange={handleChange}
           error={errors.name}
+          text={errors && errors.name}
+          defultText="მინიმუმ 2 ასო, ქართული ასოები"
         />
         <SmallInput
           label="გვარი"
@@ -44,6 +46,8 @@ const Information = ({
           placeholder="მუმლაძე"
           handleChange={handleChange}
           error={errors.surname}
+          text={errors && errors.surname}
+          defultText="მინიმუმ 2 ასო, ქართული ასოები"
         />
       </div>
       <div className="image-paragraph">
@@ -84,7 +88,8 @@ const Information = ({
           label="ელ.ფოსტა"
           type="email"
           name="email"
-          text="უნდა მთავრდებოდეს @redberry.ge-ით"
+          text={errors && errors.email}
+          defultText="უნდა მთავრდებოდეს @redberry.ge-ით"
           placeholder="anzor666@redberry.ge"
           handleChange={handleChange}
           value={data.email}
@@ -94,7 +99,8 @@ const Information = ({
           label="მობილური ნომერი"
           type="text"
           name="phone_number"
-          text="უნდა აკმაყოფილებდეს ქართული მობილური ნომრის ფორმატს"
+          text={errors && errors.phone_number}
+          defultText="უნდა აკმაყოფილებდეს ქართული მობილური ნომრის ფორმატს"
           placeholder="+995 551 12 34 56"
           handleChange={handleChange}
           value={data.phone_number}
