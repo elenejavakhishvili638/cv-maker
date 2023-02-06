@@ -14,11 +14,12 @@
   background-color: #f9f9f9;
 }
 
-/* .education {
+.education {
   display: flex;
   width: 798px;
-  justify-content: center;
+  /* justify-content: center; */
   margin-left: 150px;
+  min-height: 850px;
   flex-direction: column;
   margin-top: 77px;
-} */
+}
