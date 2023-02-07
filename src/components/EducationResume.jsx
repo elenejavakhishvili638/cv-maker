@@ -4,10 +4,7 @@ import "./educationResume.css";
 const EducationResume = ({ form }) => {
   const { institute, degree, due_date, description } = form;
   return (
-    <div className="education-resume-compnent">
-      {/* <h4>
-        {institute} {degree}
-      </h4> */}
+    <div className="education-resume-component">
       {institute && institute.length !== 0 && (
         <h4>{`${institute}${degree.length !== 0 ? `,` : ""} ${degree}`}</h4>
       )}

@@ -6,6 +6,7 @@ import "./education.css";
 import Vector from "../assets/images/Vector.png";
 import Title from "../components/shared/Title";
 import EducationForm from "../components/EducationForm";
+import educationValidation from "../validations/EducationValidation";
 
 const Education = () => {
   const location = useLocation();
@@ -13,8 +14,7 @@ const Education = () => {
   const [degrees, setDegrees] = useState([]);
   const [experiencePart, setExperiencePart] = useState(false);
   const [degree, setDegree] = useState([]);
-  //"აირჩიე ხარისხი"
-  // const [degreeOptions, setDegreeOptions] = useState([]);
+  const [errors, setErrors] = useState([]);
   const [educationPart, setEducationPart] = useState(false);
   const [educationState, setEducationState] = useState([
     {
@@ -36,6 +36,21 @@ const Education = () => {
   });
 
   useEffect(() => {
+    const data = localStorage.getItem("educationState");
+    if (data) {
+      // console.log(JSON.parse(data));
+      setEducationState(JSON.parse(data));
+    }
+
+    // const degree = localStorage.getItem("degree");
+    // if(degree) {
+
+    // }
+    const forms = { ...thirdPartFormData, experiences: JSON.parse(data) };
+    setThirdPartFormData(forms);
+  }, []);
+
+  useEffect(() => {
     setExperiencePart(
       Object.values(twoPartFormData.experiences).some((value) => {
         if (value !== "") {
@@ -46,8 +61,6 @@ const Education = () => {
       })
     );
   }, [twoPartFormData.experiences]);
-
-  // console.log(educationPart);
 
   useEffect(() => {
     setEducationPart(
@@ -81,6 +94,9 @@ const Education = () => {
     newDegrees[index]["degree"] = name;
 
     setEducationState(newDegrees);
+
+    localStorage.setItem("educationState", JSON.stringify(newDegrees));
+    localStorage.setItem("degree", JSON.stringify(newDegrees.degree));
   };
 
   const handleChange = (event, index) => {
@@ -88,8 +104,17 @@ const Education = () => {
     const newForm = [...educationState];
     newForm[index][name] = value;
     setEducationState(newForm);
+
+    newForm.forEach((item, index) => {
+      const formError = educationValidation(item);
+      errors[index] = formError;
+    });
+
+    // console.log(errors);
+    setErrors(errors);
+
+    localStorage.setItem("educationState", JSON.stringify(newForm));
   };
-  // console.log(thirdPartFormData);
 
   const addForm = () => {
     setEducationState([
@@ -103,6 +128,14 @@ const Education = () => {
     ]);
   };
   // console.log(twoPartFormData, experienceState);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("loo");
+  };
+
+  // console.log(educationState[0]);
+
   return (
     <div className="education-wrapper">
       <div className="education-card">
@@ -114,6 +147,7 @@ const Education = () => {
           </Link>
           <Title title="განათლება" page="3" />
         </div>
+
         <div className="education">
           <EducationForm
             degrees={degrees}
@@ -122,6 +156,8 @@ const Education = () => {
             addForm={addForm}
             educationState={educationState}
             handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            errors={errors}
           />
         </div>
       </div>

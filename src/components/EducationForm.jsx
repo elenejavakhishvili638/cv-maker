@@ -10,10 +10,11 @@ const EducationForm = ({
   addForm,
   educationState,
   handleChange,
+  handleSubmit,
 }) => {
   // console.log(degrees);
   return (
-    <form className="education-form">
+    <form className="education-form" onSubmit={handleSubmit}>
       {educationState &&
         educationState.map((item, index) => {
           return (

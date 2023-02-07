@@ -35,7 +35,9 @@ const Experience = () => {
 
   useEffect(() => {
     const data = localStorage.getItem("experienceState");
+
     if (data) {
+      console.log(JSON.parse(data));
       setExperienceState(JSON.parse(data));
     }
 
@@ -127,6 +129,8 @@ const Experience = () => {
       },
     });
   };
+
+  // console.log(experienceState[0]);
 
   return (
     <div className="experience-wrapper">

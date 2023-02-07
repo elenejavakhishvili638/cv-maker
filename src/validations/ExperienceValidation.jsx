@@ -38,37 +38,3 @@ const experienceValidation = (data) => {
 };
 
 export default experienceValidation;
-
-// const errors = [];
-// const error = {};
-
-// //   console.log(data);
-// data.forEach((item, index) => {
-//   console.log("item", item);
-//   if (!item.position) {
-//     //   error.position = `${
-//     //     !item.position &&
-//     //     "Position is required" | (item.position.length <= 1) &&
-//     //     "Position should be longer than 1 character"
-//     //   }}`;
-//     error[index].postion = "Position is required";
-//   } else if (item.position.length <= 1) {
-//     error[index].postion = "Position should be longer than 1 character";
-//   }
-
-//   //item.position.length <= 1
-
-//   // else {
-//   //     error.position = "Success";
-//   //   }
-
-//   // if (!item.employer) {
-//   //   error.employer = "Employer is required";
-//   // }
-//   // else if (item.employer.length <= 1) {
-//   //   error.employer = "Position should be longer than 1 character";
-//   // }
-//   errors.push(error);
-// });
-
-// return errors;
