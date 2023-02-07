@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import "./degreeComponent.css";
 
-const DegreeComponent = ({ degrees, degree, handleDegree, index }) => {
+const DegreeComponent = ({ degrees, degree, handleDegree, index, error }) => {
   const [selectedDegree, setSelectedDegree] = useState(false);
-  // console.log(degree);
+  const correct = error === "Success" && "dropdown dropdown-border-correct";
+  const incorrect =
+    error && error !== "Success" && "dropdown dropdown-border-error ";
+
   return (
     <div className="degree-component-wrap">
       <label>ხარისხი</label>
       <div
-        className="dropdown"
+        className={`${correct || incorrect || "dropdown dropdown-border"}`}
         onClick={() => setSelectedDegree(!selectedDegree)}
       >
         <div className="dropdown-btn">

@@ -11,8 +11,18 @@ const EducationFormComponent = ({
   form,
   index,
   handleChange,
+  errors,
 }) => {
-  // console.log(form);
+  // console.log(errors);
+  const correct =
+    errors[index] &&
+    errors[index].description === "Success" &&
+    "experience-description-text-correct";
+  const incorrect =
+    errors[index] &&
+    errors[index].description &&
+    errors[index].description !== "Success" &&
+    "experience-description-text-error ";
   return (
     <>
       <div className="education-description">
@@ -25,6 +35,7 @@ const EducationFormComponent = ({
           placeholder="სასწავლებელი"
           index={index}
           handleChange={handleChange}
+          error={errors[index] && errors[index].institute}
         />
       </div>
       <div className="education-info">
@@ -33,6 +44,7 @@ const EducationFormComponent = ({
           degree={degree}
           handleDegree={handleDegree}
           index={index}
+          error={errors[index] && errors[index].degree}
         />
         <CalendarInput
           type="date"
@@ -41,18 +53,20 @@ const EducationFormComponent = ({
           name="due_date"
           index={index}
           handleChange={handleChange}
+          error={errors[index] && errors[index].due_date}
         />
       </div>
       <div className="textarea-education">
         <p>აღწერა</p>
         <textarea
-          className="education-textarea"
+          // className="education-textarea"
           name="description"
           placeholder="განათლების აღწერა"
           value={form.description}
           onChange={(event) => {
             handleChange(event, index);
           }}
+          className={`${correct || incorrect || "education-textarea"}`}
         />
       </div>
       <hr className="experience-hr" />

@@ -33,6 +33,15 @@ const Experience = () => {
     experiences: [],
   });
 
+  // useEffect(() => {
+  //   experienceState.forEach((form, index) => {
+  //     const formError = experienceValidation(form);
+  //     errors[index] = formError;
+  //   });
+
+  //   setErrors(errors);
+  // }, [errors, experienceState]);
+
   useEffect(() => {
     const data = localStorage.getItem("experienceState");
 
@@ -125,6 +134,8 @@ const Experience = () => {
       state: {
         twoPartFormData: twoPartFormData,
         experiencePart: experiencePart,
+        infoFormData: infoFormData,
+        image: image,
         // experienceState: experienceState,
       },
     });

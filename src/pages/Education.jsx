@@ -10,7 +10,7 @@ import educationValidation from "../validations/EducationValidation";
 
 const Education = () => {
   const location = useLocation();
-  const { twoPartFormData, experienceState } = location.state;
+  const { twoPartFormData, infoFormData, image } = location.state;
   const [degrees, setDegrees] = useState([]);
   const [experiencePart, setExperiencePart] = useState(false);
   const [degree, setDegree] = useState([]);
@@ -42,11 +42,7 @@ const Education = () => {
       setEducationState(JSON.parse(data));
     }
 
-    // const degree = localStorage.getItem("degree");
-    // if(degree) {
-
-    // }
-    const forms = { ...thirdPartFormData, experiences: JSON.parse(data) };
+    const forms = { ...thirdPartFormData, educations: JSON.parse(data) };
     setThirdPartFormData(forms);
   }, []);
 
@@ -85,6 +81,16 @@ const Education = () => {
     fetchDegrees();
   }, []);
 
+  // useEffect(() => {
+  //   educationState.forEach((item, index) => {
+  //     const formError = educationValidation(item);
+  //     errors[index] = formError;
+  //   });
+
+  //   // console.log(errors);
+  //   setErrors(errors);
+  // }, [educationState, errors]);
+
   const handleDegree = (id, name, index) => {
     degree.push(name);
 
@@ -95,8 +101,17 @@ const Education = () => {
 
     setEducationState(newDegrees);
 
+    newDegrees.forEach((item, index) => {
+      const formError = educationValidation(item);
+      errors[index] = formError;
+    });
+
+    setErrors(errors);
+
+    console.log(degree[index], degree);
+
     localStorage.setItem("educationState", JSON.stringify(newDegrees));
-    localStorage.setItem("degree", JSON.stringify(newDegrees.degree));
+    // localStorage.setItem("degree", JSON.stringify(degree.index));
   };
 
   const handleChange = (event, index) => {
@@ -134,7 +149,7 @@ const Education = () => {
     console.log("loo");
   };
 
-  // console.log(educationState[0]);
+  // console.log(thirdPartFormData);
 
   return (
     <div className="education-wrapper">
@@ -158,6 +173,8 @@ const Education = () => {
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             errors={errors}
+            infoFormData={infoFormData}
+            image={image}
           />
         </div>
       </div>

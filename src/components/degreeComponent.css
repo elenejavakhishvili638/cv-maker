@@ -18,8 +18,11 @@
   width: 371px;
   height: 48px;
   background: #ffffff;
-  border: 1px solid #bcbcbc;
   border-radius: 4px;
+}
+
+.dropdown-border {
+  border: 1px solid #bcbcbc;
 }
 
 .dropdown-content {
@@ -95,4 +98,13 @@
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   margin-bottom: 5px;
+}
+
+/* Errors */
+
+.dropdown-border-error {
+  border: 1px solid #ef5050;
+}
+.dropdown-border-correct {
+  border: 1px solid #98e37e;
 }

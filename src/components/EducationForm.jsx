@@ -11,8 +11,11 @@ const EducationForm = ({
   educationState,
   handleChange,
   handleSubmit,
+  errors,
+  infoFormData,
+  image,
 }) => {
-  // console.log(degrees);
+  // console.log(degree, degrees);
   return (
     <form className="education-form" onSubmit={handleSubmit}>
       {educationState &&
@@ -26,6 +29,7 @@ const EducationForm = ({
               degrees={degrees}
               handleDegree={handleDegree}
               handleChange={handleChange}
+              errors={errors}
             />
           );
         })}
@@ -34,7 +38,11 @@ const EducationForm = ({
           სხვა სასწავლების დამატება
         </button>
         <div className="next-back-page-button top">
-          <Link to="/experience" className="first-next">
+          <Link
+            to="/experience"
+            className="first-next"
+            state={{ infoFormData: infoFormData, image: image }}
+          >
             უკან
           </Link>
           <button type="submit" className="first-next">

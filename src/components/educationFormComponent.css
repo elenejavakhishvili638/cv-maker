@@ -13,11 +13,14 @@
   margin-bottom: 53px;
 }
 
-.education-textarea {
+.textarea-education textarea {
   width: 798px;
   height: 179px;
   background: #ffffff;
   border-radius: 4px;
   outline: none;
+}
+
+.education-textarea {
   border: 1px solid #bcbcbc;
 }
