@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./degreeComponent.css";
 
-const DegreeComponent = ({ degrees, degree, handleDegree }) => {
+const DegreeComponent = ({ degrees, degree, handleDegree, index }) => {
   const [selectedDegree, setSelectedDegree] = useState(false);
-
+  // console.log(degree);
   return (
     <div className="degree-component-wrap">
       <label>ხარისხი</label>
@@ -17,7 +17,7 @@ const DegreeComponent = ({ degrees, degree, handleDegree }) => {
               degree === "აირჩიეთ ხარისხი" ? "light-color" : "dark-color"
             }`}
           >
-            {degree}
+            {degree.length === 0 ? "აირჩიე ხარისხი" : degree[index]}
           </p>
           <i className="arrows down" />
         </div>
@@ -30,7 +30,7 @@ const DegreeComponent = ({ degrees, degree, handleDegree }) => {
                     <button
                       className="dropdown-item"
                       onClick={() => {
-                        handleDegree(degree.id, degree.title);
+                        handleDegree(degree.id, degree.title, index);
                       }}
                     >
                       {degree.title}

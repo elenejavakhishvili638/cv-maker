@@ -108,7 +108,8 @@
   font-family: HelveticaNeue;
 }
 
-.experience-resume h3 {
+.experience-resume h3,
+.education-resume h3 {
   font-family: HelveticaNeue;
   font-style: normal;
   font-weight: 700;
@@ -119,7 +120,8 @@
   /* font-variant: small-caps; */
 }
 
-.resume-hr {
+.resume-hr,
+.education-hr {
   width: 662px;
   height: 0px;
   border: 1px solid #c8c8c8;

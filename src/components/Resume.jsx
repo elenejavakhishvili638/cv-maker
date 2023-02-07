@@ -3,6 +3,7 @@ import "./resume.css";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsTelephoneFill } from "react-icons/bs";
 import ExperienceResume from "./ExperienceResume";
+import EducationResume from "./EducationResume";
 
 const Resume = ({
   firstName,
@@ -13,8 +14,10 @@ const Resume = ({
   image,
   experienceState,
   experiencePart,
+  educationState,
+  educationPart,
 }) => {
-  // console.log(experienceState);
+  // console.log(educationPart);
   return (
     <div className="resume-wrap">
       <div className="personal-resume">
@@ -54,6 +57,16 @@ const Resume = ({
           {experienceState &&
             experienceState.map((form, index) => {
               return <ExperienceResume key={index} form={form} />;
+            })}
+        </div>
+      )}
+      {educationPart && (
+        <div className="education-resume">
+          <hr className="education-hr" />
+          <h3>განათლება</h3>
+          {educationState &&
+            educationState.map((form, index) => {
+              return <EducationResume key={index} form={form} />;
             })}
         </div>
       )}

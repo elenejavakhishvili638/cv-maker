@@ -55,8 +55,6 @@ const Experience = () => {
     );
   }, [experienceState]);
 
-  // console.log(experiencePart);
-
   const handleChange = (event, index) => {
     // console.log(event);
     const { name, value } = event.target;
@@ -124,6 +122,7 @@ const Experience = () => {
     navigate("/education", {
       state: {
         twoPartFormData: twoPartFormData,
+        experiencePart: experiencePart,
         // experienceState: experienceState,
       },
     });

@@ -3,17 +3,33 @@ import "./educationForm.css";
 import { Link } from "react-router-dom";
 import EducationFormComponent from "./EducationFormComponent";
 
-const EducationForm = ({ degrees, degree, handleDegree }) => {
-  console.log(degrees);
+const EducationForm = ({
+  degrees,
+  degree,
+  handleDegree,
+  addForm,
+  educationState,
+  handleChange,
+}) => {
+  // console.log(degrees);
   return (
     <form className="education-form">
-      <EducationFormComponent
-        degree={degree}
-        degrees={degrees}
-        handleDegree={handleDegree}
-      />
+      {educationState &&
+        educationState.map((item, index) => {
+          return (
+            <EducationFormComponent
+              form={item}
+              key={index}
+              index={index}
+              degree={degree}
+              degrees={degrees}
+              handleDegree={handleDegree}
+              handleChange={handleChange}
+            />
+          );
+        })}
       <div className="experience-btn-container">
-        <button className="add-information" type="button">
+        <button className="add-information" onClick={addForm} type="button">
           სხვა სასწავლების დამატება
         </button>
         <div className="next-back-page-button top">

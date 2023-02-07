@@ -3,6 +3,7 @@ import "./experienceResume.css";
 
 const ExperienceResume = ({ form }) => {
   const { position, employer, due_date, start_date, description } = form;
+  // console.log(position);
   return (
     <div className="experience-resume-component">
       {position && position.length !== 0 && (
