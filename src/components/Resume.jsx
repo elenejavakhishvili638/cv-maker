@@ -16,6 +16,7 @@ const Resume = ({
   experiencePart,
   educationState,
   educationPart,
+  degree,
 }) => {
   // console.log(educationPart);
   return (
@@ -66,7 +67,14 @@ const Resume = ({
           <h3>განათლება</h3>
           {educationState &&
             educationState.map((form, index) => {
-              return <EducationResume key={index} form={form} />;
+              return (
+                <EducationResume
+                  key={index}
+                  form={form}
+                  degree={degree}
+                  index={index}
+                />
+              );
             })}
         </div>
       )}

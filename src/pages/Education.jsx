@@ -10,7 +10,20 @@ import educationValidation from "../validations/EducationValidation";
 
 const Education = () => {
   const location = useLocation();
-  const { twoPartFormData, infoFormData, image } = location.state;
+  const { twoPartFormData, infoFormData, image, preview } = location.state;
+
+  // const [mimeType, encodedData] = image.split(",");
+
+  // // console.log(fileUrl);
+  // const binaryString = atob(encodedData);
+  // const uint8Array = new Uint8Array(
+  //   binaryString.split("").map((char) => char.charCodeAt(0))
+  // );
+
+  // const file = new Blob([uint8Array], { type: mimeType });
+
+  // const fileUrl = URL.createObjectURL(file);
+
   const [degrees, setDegrees] = useState([]);
   const [experiencePart, setExperiencePart] = useState(false);
   const [degree, setDegree] = useState([]);
@@ -19,7 +32,7 @@ const Education = () => {
   const [educationState, setEducationState] = useState([
     {
       institute: "",
-      degree: "",
+      degree_id: "",
       due_date: "",
       description: "",
     },
@@ -29,11 +42,13 @@ const Education = () => {
     surname: twoPartFormData.surname,
     email: twoPartFormData.email,
     phone_number: twoPartFormData.phone_number,
-    image: twoPartFormData.image,
+    image: preview,
     about_me: twoPartFormData.about_me,
     experiences: twoPartFormData.experiences,
     educations: [],
   });
+
+  console.log(preview);
 
   useEffect(() => {
     const data = localStorage.getItem("educationState");
@@ -42,21 +57,30 @@ const Education = () => {
       setEducationState(JSON.parse(data));
     }
 
+    const degree = localStorage.getItem("degree");
+    if (degree) {
+      setDegree(JSON.parse(degree));
+    }
+
     const forms = { ...thirdPartFormData, educations: JSON.parse(data) };
     setThirdPartFormData(forms);
   }, []);
 
   useEffect(() => {
-    setExperiencePart(
-      Object.values(twoPartFormData.experiences).some((value) => {
-        if (value !== "") {
-          return true;
-        } else {
-          return false;
-        }
-      })
-    );
-  }, [twoPartFormData.experiences]);
+    if (twoPartFormData && twoPartFormData.experiences) {
+      setExperiencePart(
+        Object.values(twoPartFormData && twoPartFormData.experiences).some(
+          (value) => {
+            if (value !== "") {
+              return true;
+            } else {
+              return false;
+            }
+          }
+        )
+      );
+    }
+  }, [twoPartFormData, twoPartFormData.experiences]);
 
   useEffect(() => {
     setEducationPart(
@@ -81,23 +105,13 @@ const Education = () => {
     fetchDegrees();
   }, []);
 
-  // useEffect(() => {
-  //   educationState.forEach((item, index) => {
-  //     const formError = educationValidation(item);
-  //     errors[index] = formError;
-  //   });
-
-  //   // console.log(errors);
-  //   setErrors(errors);
-  // }, [educationState, errors]);
-
   const handleDegree = (id, name, index) => {
-    degree.push(name);
-
+    // degree.push(name);
+    degree[index] = name;
     setDegree(degree);
-
+    console.log(degree);
     const newDegrees = [...educationState];
-    newDegrees[index]["degree"] = name;
+    newDegrees[index]["degree_id"] = id;
 
     setEducationState(newDegrees);
 
@@ -111,7 +125,7 @@ const Education = () => {
     console.log(degree[index], degree);
 
     localStorage.setItem("educationState", JSON.stringify(newDegrees));
-    // localStorage.setItem("degree", JSON.stringify(degree.index));
+    localStorage.setItem("degree", JSON.stringify(degree));
   };
 
   const handleChange = (event, index) => {
@@ -136,7 +150,7 @@ const Education = () => {
       ...educationState,
       {
         institute: "",
-        degree: "",
+        degree_id: "",
         due_date: "",
         description: "",
       },
@@ -144,12 +158,76 @@ const Education = () => {
   };
   // console.log(twoPartFormData, experienceState);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("loo");
+    // console.log("loo");
+    const forms = { ...thirdPartFormData, educations: educationState };
+    setThirdPartFormData(forms);
+
+    educationState.forEach((form, index) => {
+      const formError = educationValidation(form);
+      errors[index] = formError;
+    });
+    setErrors(errors);
+
+    let goToNextPage = true;
+    errors.forEach((error) => {
+      if (error && Object.keys(error).length !== 0) {
+        for (const [key, value] of Object.entries(error)) {
+          if (value !== "Success") {
+            goToNextPage = false;
+            break;
+          }
+        }
+      }
+    });
+
+    if (!goToNextPage) {
+      console.log("Pass the validation");
+      return;
+    }
+
+    const data = new FormData();
+    console.log(data);
+
+    for (let prop in thirdPartFormData) {
+      console.log(thirdPartFormData[prop]);
+      data.append(prop, thirdPartFormData[prop]);
+    }
+
+    console.log(thirdPartFormData);
+    // try {
+    //   const response = await fetch(
+    //     "https://resume.redberryinternship.ge/api/cvs",
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Accept: "application/json",
+    //         // Accept: "*/*",
+    //       },
+    //       body: data,
+    //     }
+    //   );
+    //   console.log(response);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
+    fetch("https://resume.redberryinternship.ge/api/cvs", {
+      method: "POST",
+      headers: {
+        // "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      // body: JSON.stringify(thirdPartFormData),
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
 
-  // console.log(thirdPartFormData);
+  console.log(thirdPartFormData);
 
   return (
     <div className="education-wrapper">
@@ -192,6 +270,7 @@ const Education = () => {
               educationPart={educationPart}
               educationState={educationState}
               experiencePart={experiencePart}
+              degree={degree}
             />
             <Footer />
           </div>

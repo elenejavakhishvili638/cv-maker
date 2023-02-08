@@ -32,6 +32,7 @@ const EducationFormComponent = ({
           type="text"
           value={form.institute}
           defultText="მინიმუმ 2 სიმბოლო"
+          text={errors[index] && errors[index].institute}
           placeholder="სასწავლებელი"
           index={index}
           handleChange={handleChange}
@@ -44,7 +45,7 @@ const EducationFormComponent = ({
           degree={degree}
           handleDegree={handleDegree}
           index={index}
-          error={errors[index] && errors[index].degree}
+          error={errors[index] && errors[index].degree_id}
         />
         <CalendarInput
           type="date"

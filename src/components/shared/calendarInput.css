@@ -49,3 +49,23 @@
 .calendar-input-correct {
   border: 1px solid #98e37e;
 }
+
+input[type="date"]::-webkit-input-placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+input[type="date"]::-moz-placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+input[type="date"]::-ms-input-placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+input[type="date"]::placeholder {
+  color: #999;
+  font-style: italic;
+}

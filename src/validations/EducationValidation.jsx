@@ -8,10 +8,10 @@ const educationValidation = (data) => {
     error.institute = "Success";
   }
 
-  if (!data.degree) {
-    error.degree = "შეავსეთ ველი";
+  if (!data.degree_id) {
+    error.degree_id = "შეავსეთ ველი";
   } else {
-    error.degree = "Success";
+    error.degree_id = "Success";
   }
 
   if (!data.due_date) {

@@ -12,6 +12,7 @@ import Footer from "../components/shared/Footer";
 const Info = () => {
   const [image, setImage] = useState();
   const [errors, setErrors] = useState({});
+  const [preview, setPreview] = useState();
   const [infoFormData, setInfoFormData] = useState({
     name: "",
     surname: "",
@@ -33,6 +34,10 @@ const Info = () => {
       setImage(image);
     }
 
+    // const preview = localStorage.getItem("preview");
+    // if (preview) {
+    //   setPreview(preview);
+    // }
     // const errors = privateValidation(infoFormData, image);
 
     // setErrors(errors);
@@ -60,6 +65,9 @@ const Info = () => {
     setInfoFormData(dataWithNewImage);
 
     const img = event.target.files[0];
+
+    setPreview(img);
+    // localStorage.setItem("preview", JSON.stringify(img));
 
     const reader = new FileReader();
     // setImage(reader.result);
@@ -89,9 +97,11 @@ const Info = () => {
     }
 
     navigate("/experience", {
-      state: { infoFormData: infoFormData, image: image },
+      state: { infoFormData: infoFormData, image: image, preview: preview },
     });
   };
+
+  console.log(preview);
 
   return (
     <div className="private-info">

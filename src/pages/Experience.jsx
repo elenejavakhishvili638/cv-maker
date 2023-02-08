@@ -10,7 +10,8 @@ import experienceValidation from "../validations/ExperienceValidation";
 
 const Experience = () => {
   const location = useLocation();
-  const { infoFormData, image } = location.state;
+  const { infoFormData, image, preview } = location.state;
+  console.log(preview);
   const navigate = useNavigate();
   const [experiencePart, setExperiencePart] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -32,15 +33,6 @@ const Experience = () => {
     about_me: infoFormData.about_me,
     experiences: [],
   });
-
-  // useEffect(() => {
-  //   experienceState.forEach((form, index) => {
-  //     const formError = experienceValidation(form);
-  //     errors[index] = formError;
-  //   });
-
-  //   setErrors(errors);
-  // }, [errors, experienceState]);
 
   useEffect(() => {
     const data = localStorage.getItem("experienceState");
@@ -136,12 +128,14 @@ const Experience = () => {
         experiencePart: experiencePart,
         infoFormData: infoFormData,
         image: image,
+        preview: preview,
+        // preview: preview,
         // experienceState: experienceState,
       },
     });
   };
 
-  // console.log(experienceState[0]);
+  console.log(preview);
 
   return (
     <div className="experience-wrapper">

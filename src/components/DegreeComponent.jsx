@@ -15,12 +15,8 @@ const DegreeComponent = ({ degrees, degree, handleDegree, index, error }) => {
         onClick={() => setSelectedDegree(!selectedDegree)}
       >
         <div className="dropdown-btn">
-          <p
-            className={`${
-              degree === "აირჩიეთ ხარისხი" ? "light-color" : "dark-color"
-            }`}
-          >
-            {degree.length === 0 ? "აირჩიე ხარისხი" : degree[index]}
+          <p className={`${degree[index] ? "dark-color" : "light-color"}`}>
+            {degree[index] ? degree[index] : "აირჩიე ხარისხი"}
           </p>
           <i className="arrows down" />
         </div>
@@ -33,6 +29,7 @@ const DegreeComponent = ({ degrees, degree, handleDegree, index, error }) => {
                     <button
                       className="dropdown-item"
                       onClick={() => {
+                        console.log(degree.id, index);
                         handleDegree(degree.id, degree.title, index);
                       }}
                     >
