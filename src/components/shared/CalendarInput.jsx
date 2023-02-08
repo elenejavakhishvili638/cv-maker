@@ -10,7 +10,9 @@ const CalendarInput = ({
   index,
   name,
 }) => {
-  const correct = error === "Success" && "calendar-input-correct";
+  const correct =
+    error === "Success" &&
+    "calendar-input-correct calendar-input-default-color";
 
   const incorrect = error && error !== "Success" && "calendar-input-error";
 
@@ -18,7 +20,11 @@ const CalendarInput = ({
     <div className="calendar-input-container">
       <label className="calendar-input-label">{label}</label>
       <input
-        className={correct || incorrect || "calendar-input-default"}
+        className={
+          correct ||
+          incorrect ||
+          "calendar-input-default calendar-input-default-color"
+        }
         value={value}
         name={name}
         type={type}

@@ -102,7 +102,7 @@ const Info = () => {
     });
   };
 
-  console.log(preview);
+  // console.log(image);
 
   return (
     <div className="private-info">

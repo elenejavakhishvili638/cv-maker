@@ -24,17 +24,8 @@
   /* border: 1px solid #bcbcbc; */
   border-radius: 4px;
   outline: none;
+  padding: 13px 16px 14px 16px;
 }
-
-/* .calendar-input::placeholder {
-  font-family: HelveticaNeue;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 21px;
-  color: rgba(0, 0, 0, 0.6);
-  padding-left: 5px;
-} */
 
 .calendar-input-default {
   border: 1px solid #bcbcbc;
@@ -50,22 +41,20 @@
   border: 1px solid #98e37e;
 }
 
-input[type="date"]::-webkit-input-placeholder {
-  color: #999;
-  font-style: italic;
+.calendar-input-default-color {
 }
 
-input[type="date"]::-moz-placeholder {
-  color: #999;
-  font-style: italic;
+input[type="date"].calendar-input-default-color::-webkit-datetime-edit-text,
+input[type="date"].calendar-input-default-color::-webkit-datetime-edit-month-field,
+input[type="date"].calendar-input-default-color::-webkit-datetime-edit-day-field,
+input[type="date"].calendar-input-default-color::-webkit-datetime-edit-year-field {
+  color: #000000;
+  /* color: #f8f9fa; */
 }
 
-input[type="date"]::-ms-input-placeholder {
-  color: #999;
-  font-style: italic;
-}
-
-input[type="date"]::placeholder {
-  color: #999;
-  font-style: italic;
+input[type="date"]::-webkit-datetime-edit-text,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  color: rgba(0, 0, 0, 0.6);
 }

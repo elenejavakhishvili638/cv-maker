@@ -24,6 +24,20 @@ const Education = () => {
 
   // const fileUrl = URL.createObjectURL(file);
 
+  // console.log(fileUrl);
+
+  // const base64Image = image;
+  // const [, format, body] = /data:([^;]+),(.*)/.exec(image) || [];
+
+  // if (!format || !body) {
+  //   throw new Error("Invalid image fromat or data");
+  // }
+
+  // const blob = new Blob([atob(body)], { type: `iamge/${format}` });
+  // const file = new File([blob], "image.jpeg", { type: `image/${format}` });
+
+  // console.log(file, image);
+
   const [degrees, setDegrees] = useState([]);
   const [experiencePart, setExperiencePart] = useState(false);
   const [degree, setDegree] = useState([]);
@@ -41,7 +55,7 @@ const Education = () => {
     name: twoPartFormData.name,
     surname: twoPartFormData.surname,
     email: twoPartFormData.email,
-    phone_number: twoPartFormData.phone_number,
+    phone_number: twoPartFormData.phone_number.replace(/\s/g, ""),
     image: preview,
     about_me: twoPartFormData.about_me,
     experiences: twoPartFormData.experiences,
@@ -195,16 +209,16 @@ const Education = () => {
       data.append(prop, thirdPartFormData[prop]);
     }
 
-    console.log(thirdPartFormData);
+    // console.log(thirdPartFormData);
     // try {
     //   const response = await fetch(
     //     "https://resume.redberryinternship.ge/api/cvs",
     //     {
     //       method: "POST",
     //       headers: {
-    //         "Content-Type": "application/json",
+    //         // "Content-Type": "application/json",
     //         Accept: "application/json",
-    //         // Accept: "*/*",
+    //
     //       },
     //       body: data,
     //     }
@@ -220,7 +234,7 @@ const Education = () => {
         // "Content-Type": "application/json",
         Accept: "application/json",
       },
-      // body: JSON.stringify(thirdPartFormData),
+
       body: data,
     })
       .then((res) => res.json())
@@ -240,7 +254,6 @@ const Education = () => {
           </Link>
           <Title title="განათლება" page="3" />
         </div>
-
         <div className="education">
           <EducationForm
             degrees={degrees}

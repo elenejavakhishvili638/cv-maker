@@ -1,8 +1,10 @@
 const privateValidation = (data, image) => {
   const errors = {};
   const gerorgianCharacters = /^[ა-ჰ]+$/;
-  const email = /.*\@redberry.ge$/;
-  const phone = /^\+\995\d{9}?/;
+  // const email = /.*\@redberry.ge$/;
+  const email = /^[a-zA-Z0-9._%+-]+@redberry\.ge$/;
+  // const phone = /^\+\995\d{9}?/;
+  const phone = /^\+995\s5\d{2}\s\d{2}\s\d{2}\s\d{2}$/;
 
   if (!data.name) {
     errors.name = "შეავსეთ ველი";
@@ -13,13 +15,6 @@ const privateValidation = (data, image) => {
   } else {
     errors.name = "Success";
   }
-  // if (
-  //   data.name &&
-  //   gerorgianCharacters.test(data.name) &&
-  //   data.name.length > 1
-  // ) {
-  //   errors.name = "Success";
-  // }
 
   if (!data.surname) {
     errors.surname = "შეავსეთ ველი";
@@ -30,11 +25,6 @@ const privateValidation = (data, image) => {
   } else {
     errors.surname = "Success";
   }
-  // if (
-  //   data.surname &&
-  //   gerorgianCharacters.test(data.surname) &&
-  //   data.surname.length > 1
-  // )
 
   if (!data.email) {
     errors.email = "შეავსეთ ველი";
@@ -43,9 +33,6 @@ const privateValidation = (data, image) => {
   } else {
     errors.email = "Success";
   }
-  // if (data.email && email.test(data.email)) {
-  //   errors.email = "Success";
-  // }
 
   if (!data.phone_number) {
     errors.phone_number = "შეავსეთ ველი";
@@ -55,9 +42,6 @@ const privateValidation = (data, image) => {
   } else {
     errors.phone_number = "Success";
   }
-  // if (data.phone_number && phone.test(data.phone_number)) {
-  //   errors.phone_number = "Success";
-  // }
 
   if (!image) {
     errors.image = "Image upload is neccessary";
