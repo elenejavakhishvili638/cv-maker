@@ -94,4 +94,11 @@
   color: #f02424;
   height: 19px;
   width: 21px;
+
+  position: absolute;
+  left: 812px;
+}
+
+.big-input-wrapper {
+  position: relative;
 }

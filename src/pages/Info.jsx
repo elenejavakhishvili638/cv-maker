@@ -45,6 +45,7 @@ const Info = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     const newInfoFormData = {
       ...infoFormData,
       [name]: value,
@@ -52,11 +53,11 @@ const Info = () => {
     console.log(name, value);
     setInfoFormData(newInfoFormData);
 
-    const errors = privateValidation(infoFormData, image);
+    const errors = privateValidation(newInfoFormData, image);
 
     setErrors(errors);
 
-    localStorage.setItem("infoFormdata", JSON.stringify(infoFormData));
+    localStorage.setItem("infoFormdata", JSON.stringify(newInfoFormData));
   };
 
   const handleImageUpload = (event) => {
