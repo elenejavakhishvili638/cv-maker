@@ -7,7 +7,7 @@
 .calendar-input-container label {
   font-family: HelveticaNeue;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 16px;
   line-height: 21px;
 }
@@ -39,9 +39,6 @@
 
 .calendar-input-correct {
   border: 1px solid #98e37e;
-}
-
-.calendar-input-default-color {
 }
 
 input[type="date"].calendar-input-default-color::-webkit-datetime-edit-text,

@@ -4,13 +4,14 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import Resume from "../components/Resume";
 import Footer from "../components/shared/Footer";
 import Title from "../components/shared/Title";
-import ExperienceForm from "../components/ExperienceForm";
+import ExperienceForm from "../components/Experiences/ExperienceForm";
 import Vector from "../assets/images/Vector.png";
 import experienceValidation from "../validations/ExperienceValidation";
 
 const Experience = () => {
   const location = useLocation();
-  const { infoFormData, image, preview } = location.state;
+  const { infoFormData, image, preview, educationPart, educationState } =
+    location.state;
   console.log(preview);
   const navigate = useNavigate();
   const [experiencePart, setExperiencePart] = useState(false);
@@ -62,10 +63,10 @@ const Experience = () => {
     // console.log(event);
     const { name, value } = event.target;
     const newForms = [...experienceState];
+
     newForms[index][name] = value;
+
     setExperienceState(newForms);
-    // const forms = { ...twoPartFormData, experiences: newForms };
-    // setTwoPartFormData(forms);
 
     newForms.forEach((form, index) => {
       const formError = experienceValidation(form);
@@ -129,8 +130,9 @@ const Experience = () => {
         infoFormData: infoFormData,
         image: image,
         preview: preview,
+
         // preview: preview,
-        // experienceState: experienceState,
+        experienceState: experienceState,
       },
     });
   };
@@ -141,7 +143,13 @@ const Experience = () => {
     <div className="experience-wrapper">
       <div className="experience-card">
         <div className="title-wrap">
-          <Link className="back" to="/">
+          <Link
+            className="back"
+            to="/"
+            onClick={() => {
+              localStorage.clear();
+            }}
+          >
             <div className="vector-wrap">
               <img src={Vector} alt="vector" />
             </div>
@@ -170,6 +178,8 @@ const Experience = () => {
               image={image}
               experienceState={experienceState}
               experiencePart={experiencePart}
+              // educationPart={educationPart}
+              // educationState={educationState}
             />
             <Footer />
           </div>

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import BigInput from "./shared/BigInput";
+import BigInput from "../shared/BigInput";
 import "./information.css";
-import SmallInput from "./shared/SmallInput";
+import SmallInput from "../shared/SmallInput";
 import {
   BsExclamationTriangleFill,
   BsFillCheckCircleFill,
@@ -16,8 +16,6 @@ const Information = ({
   handleSubmit,
 }) => {
   const ref = useRef(null);
-
-  // console.log(errors);
 
   const pickImageHandler = (event) => {
     event.preventDefault();

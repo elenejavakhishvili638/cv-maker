@@ -2,8 +2,8 @@ import React from "react";
 import "./resume.css";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsTelephoneFill } from "react-icons/bs";
-import ExperienceResume from "./ExperienceResume";
-import EducationResume from "./EducationResume";
+import ExperienceResume from "./Experiences/ExperienceResume";
+import EducationResume from "./Education/EducationResume";
 
 const Resume = ({
   firstName,

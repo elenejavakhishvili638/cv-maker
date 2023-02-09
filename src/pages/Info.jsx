@@ -5,13 +5,14 @@ import privateValidation from "../validations/PrivateInformationValidation";
 
 import Title from "../components/shared/Title";
 import Vector from "../assets/images/Vector.png";
-import Information from "../components/Information";
+import Information from "../components/Info/Information";
 import Resume from "../components/Resume";
 import Footer from "../components/shared/Footer";
 
 const Info = () => {
   const [image, setImage] = useState();
   const [errors, setErrors] = useState({});
+  // const { preview, saveImage } = useImageContext();
   const [preview, setPreview] = useState();
   const [infoFormData, setInfoFormData] = useState({
     name: "",
@@ -32,6 +33,7 @@ const Info = () => {
     const image = localStorage.getItem("image");
     if (image) {
       setImage(image);
+      setPreview(image);
     }
 
     // const preview = localStorage.getItem("preview");
@@ -68,15 +70,16 @@ const Info = () => {
     const img = event.target.files[0];
 
     setPreview(img);
-    // localStorage.setItem("preview", JSON.stringify(img));
 
     const reader = new FileReader();
     // setImage(reader.result);
     reader.readAsDataURL(img);
-    console.log(reader.result);
+    // console.log(reader.result);
     reader.onload = () => {
+      // setPreview(reader.result);
       setImage(reader.result);
       localStorage.setItem("image", reader.result);
+      // localStorage.setItem("preview", reader.result);
     };
 
     // setImage(URL.createObjectURL(img));
@@ -102,13 +105,17 @@ const Info = () => {
     });
   };
 
-  // console.log(image);
-
   return (
     <div className="private-info">
       <div className="private-info-card">
         <div className="title-wrap">
-          <Link className="back" to="/">
+          <Link
+            className="back"
+            to="/"
+            onClick={() => {
+              localStorage.clear();
+            }}
+          >
             <div className="vector-wrap">
               <img src={Vector} alt="vector" />
             </div>

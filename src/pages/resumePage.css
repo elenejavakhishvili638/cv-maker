@@ -1,5 +1,6 @@
 .final-resume-form {
   width: 662px;
+  margin-top: 48px;
 }
 
 .back-resume {
@@ -39,7 +40,90 @@
   flex-direction: column;
 }
 
-.resume-page {
+.final-resume-personal {
+  display: flex;
+  justify-content: space-between;
+  /* margin-left: 80px; */
+  margin-bottom: 19px;
+}
+
+.final-resume-info {
+  width: 432px;
+}
+
+.final-resume-info h1 {
+  margin-bottom: 17px;
+  margin-top: 0;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 42px;
+  color: #f93b1d;
+
+  font-variant: small-caps;
+}
+
+.resume-email,
+.resume-phone {
+  margin-top: 0;
+  /* margin-bottom: 10px; */
+  display: flex;
+  flex-direction: row;
+}
+
+.resume-email p,
+.resume-phone p {
+  margin: 0px 0px 0px 11px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #1a1a1a;
+}
+
+.resume-phone {
+  margin-top: 10px;
+  margin-bottom: 34px;
+}
+
+.resume-email svg,
+.resume-phone svg {
+  color: #898989;
+  height: 17px;
+  width: 17px;
+}
+
+.resume-image {
+  width: 246px;
+  height: 246px;
+  background-color: #d9d9d9;
+  border-radius: 133px;
+  margin-bottom: 47px;
+}
+
+.about-me-resume h3 {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 26px;
+  line-height: 22px;
+  color: #f93b1d;
+  margin: 0 0 15px 0;
+  font-variant: small-caps;
+}
+
+.about-me-resume div {
+  min-height: 72px;
+}
+
+.about-me-resume p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  margin-top: 15px;
+  color: #000000;
+  margin-bottom: 0;
+  width: 432px;
+  overflow-wrap: break-word;
 }
 
 .modal {

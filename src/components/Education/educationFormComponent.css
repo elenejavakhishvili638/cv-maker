@@ -19,6 +19,12 @@
   background: #ffffff;
   border-radius: 4px;
   outline: none;
+  padding-top: 13px;
+  padding-left: 16px;
+}
+
+.textarea-education p {
+  font-weight: 700;
 }
 
 .education-textarea {

@@ -1,6 +1,6 @@
 import React from "react";
-import BigInput from "./shared/BigInput";
-import CalendarInput from "./shared/CalendarInput";
+import BigInput from "../shared/BigInput";
+import CalendarInput from "../shared/CalendarInput";
 import "./ExperienceFormComponent.css";
 
 const ExperienceFormComponent = ({ handleChange, form, index, errors }) => {

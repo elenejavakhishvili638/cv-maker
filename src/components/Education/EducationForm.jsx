@@ -14,6 +14,7 @@ const EducationForm = ({
   errors,
   infoFormData,
   image,
+  educationPart,
 }) => {
   // console.log(degree, degrees);
   return (
@@ -41,7 +42,12 @@ const EducationForm = ({
           <Link
             to="/experience"
             className="first-next"
-            state={{ infoFormData: infoFormData, image: image }}
+            state={{
+              infoFormData: infoFormData,
+              image: image,
+              // educationPart: educationPart,
+              // educationState: educationState,
+            }}
           >
             უკან
           </Link>

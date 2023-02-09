@@ -19,7 +19,7 @@ const BigInput = ({
 }) => {
   return (
     <div className="technical-wrap">
-      <label htmlFor="technical-title">{label}</label>
+      <label className="technical-title">{label}</label>
       <div className="big-input-wrapper">
         <div
           className={

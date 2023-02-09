@@ -1,8 +1,8 @@
 import React from "react";
 import "./educationFormComponent.css";
-import BigInput from "./shared/BigInput";
-import CalendarInput from "./shared/CalendarInput";
-import DegreeComponent from "./DegreeComponent";
+import BigInput from "../shared/BigInput";
+import CalendarInput from "../shared/CalendarInput";
+import DegreeComponent from "../DegreeComponent";
 
 const EducationFormComponent = ({
   degrees,

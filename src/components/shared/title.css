@@ -20,11 +20,11 @@
   margin-top: 47px;
   margin-bottom: 12px;
   font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
+  font-weight: 900;
+  font-size: 36px;
   line-height: 29px;
   color: #1a1a1a;
-  /* font-variant: small-caps; */
+  font-variant: small-caps;
 }
 
 .title p {
