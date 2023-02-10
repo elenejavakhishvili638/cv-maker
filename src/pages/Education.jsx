@@ -7,21 +7,26 @@ import Vector from "../assets/images/Vector.png";
 import Title from "../components/shared/Title";
 import EducationForm from "../components/Education/EducationForm";
 import educationValidation from "../validations/EducationValidation";
-// import { useResumeContext } from "../context/Resume_conext";
-// import { useResumeContext } from "../components/context/Resume_conext";
 
 const Education = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { twoPartFormData, infoFormData, image, preview, experienceState } =
-    location.state;
-  // const { resume, setResume } = useResumeContext();
+  const {
+    // twoPartFormData,
+    infoFormData,
+    image,
+    experienceState,
+    experiencePart,
+  } = location.state;
+
   const [resume, setResume] = useState({});
   const [degrees, setDegrees] = useState([]);
-  const [experiencePart, setExperiencePart] = useState(false);
+
   const [degree, setDegree] = useState([]);
   const [errors, setErrors] = useState([]);
   const [educationPart, setEducationPart] = useState(false);
+  console.log(experiencePart);
+  const [imageFile, setImageFile] = useState();
   const [educationState, setEducationState] = useState([
     {
       institute: "",
@@ -31,16 +36,16 @@ const Education = () => {
     },
   ]);
 
-  const [thirdPartFormData, setThirdPartFormData] = useState({
-    name: twoPartFormData.name,
-    surname: twoPartFormData.surname,
-    email: twoPartFormData.email,
-    phone_number: twoPartFormData.phone_number.replace(/\s/g, ""),
-    image: "",
-    about_me: twoPartFormData.about_me,
-    experiences: twoPartFormData.experiences,
-    educations: [],
-  });
+  // const [thirdPartFormData, setThirdPartFormData] = useState({
+  //   name: twoPartFormData.name,
+  //   surname: twoPartFormData.surname,
+  //   email: twoPartFormData.email,
+  //   phone_number: twoPartFormData.phone_number.replace(/\s/g, ""),
+  //   image: "",
+  //   about_me: twoPartFormData.about_me,
+  //   experiences: twoPartFormData.experiences,
+  //   educations: [],
+  // });
 
   useEffect(() => {
     const arr = image.split(",");
@@ -54,8 +59,9 @@ const Education = () => {
     }
 
     const file = new File([u8arr], "File name", { type: mime });
-    thirdPartFormData.image = file;
-    setThirdPartFormData(thirdPartFormData);
+    // thirdPartFormData.image = file;
+    // setThirdPartFormData(thirdPartFormData);
+    setImageFile(file);
   }, []);
 
   useEffect(() => {
@@ -70,25 +76,9 @@ const Education = () => {
       setDegree(JSON.parse(degree));
     }
 
-    const forms = { ...thirdPartFormData, educations: JSON.parse(data) };
-    setThirdPartFormData(forms);
+    // const forms = { ...thirdPartFormData, educations: JSON.parse(data) };
+    // setThirdPartFormData(forms);
   }, []);
-
-  useEffect(() => {
-    if (twoPartFormData && twoPartFormData.experiences) {
-      setExperiencePart(
-        Object.values(twoPartFormData && twoPartFormData.experiences).some(
-          (value) => {
-            if (value !== "") {
-              return true;
-            } else {
-              return false;
-            }
-          }
-        )
-      );
-    }
-  }, [twoPartFormData, twoPartFormData.experiences]);
 
   useEffect(() => {
     setEducationPart(
@@ -115,6 +105,7 @@ const Education = () => {
 
   const handleDegree = (id, name, index) => {
     // degree.push(name);
+    setEducationPart(true);
     degree[index] = name;
     setDegree(degree);
     console.log(degree);
@@ -141,6 +132,7 @@ const Education = () => {
     const newForm = [...educationState];
     newForm[index][name] = value;
     setEducationState(newForm);
+    setEducationPart(true);
 
     newForm.forEach((item, index) => {
       const formError = educationValidation(item);
@@ -168,11 +160,11 @@ const Education = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const forms = {
-      ...thirdPartFormData,
-      educations: educationState,
-    };
-    setThirdPartFormData(forms);
+    // const forms = {
+    //   ...thirdPartFormData,
+    //   educations: educationState,
+    // };
+    // setThirdPartFormData(forms);
 
     educationState.forEach((form, index) => {
       const formError = educationValidation(form);
@@ -199,7 +191,7 @@ const Education = () => {
 
     const data = new FormData();
 
-    data.append("image", thirdPartFormData.image);
+    data.append("image", imageFile);
 
     for (let i = 0; i < educationState.length; i++) {
       data.append(`educations[${i}][institute]`, educationState[i].institute);
@@ -224,14 +216,11 @@ const Education = () => {
         experienceState[i].description
       );
     }
-    data.append("name", twoPartFormData.name);
-    data.append("surname", twoPartFormData.surname);
-    data.append("about_me", twoPartFormData.about_me);
-    data.append("email", twoPartFormData.email);
-    data.append(
-      "phone_number",
-      twoPartFormData.phone_number.replace(/\s/g, "")
-    );
+    data.append("name", infoFormData.name);
+    data.append("surname", infoFormData.surname);
+    data.append("about_me", infoFormData.about_me);
+    data.append("email", infoFormData.email);
+    data.append("phone_number", infoFormData.phone_number.replace(/\s/g, ""));
 
     console.log(data);
 
@@ -249,6 +238,7 @@ const Education = () => {
 
       const res = await response.json();
       setResume(res);
+      console.log(res);
 
       // localStorage.setItem("finalResume", JSON.stringify(res));
     } catch (error) {
@@ -262,10 +252,11 @@ const Education = () => {
           resume: resume,
         },
       });
+      localStorage.clear();
     }
   };
 
-  console.log(resume);
+  // console.log(imageFile, image, twoPartFormData.image, thirdPartFormData.image);
 
   return (
     <div className="education-wrapper">
@@ -303,19 +294,22 @@ const Education = () => {
         <div className="info-education-resume">
           <div className="private-info-resume-wrap">
             <Resume
-              firstName={twoPartFormData && twoPartFormData.name}
-              lastName={twoPartFormData && twoPartFormData.surname}
-              email={twoPartFormData && twoPartFormData.email}
-              phone={twoPartFormData && twoPartFormData.phone_number}
-              aboutMe={twoPartFormData && twoPartFormData.about_me}
-              image={twoPartFormData && twoPartFormData.image}
-              experienceState={twoPartFormData && twoPartFormData.experiences}
+              firstName={infoFormData.name}
+              lastName={infoFormData.surname}
+              email={infoFormData.email}
+              phone={infoFormData.phone_number}
+              aboutMe={infoFormData.about_me}
+              image={image}
+              // experienceState={twoPartFormData && twoPartFormData.experiences}
+              experienceState={experienceState}
               educationPart={educationPart}
               educationState={educationState}
               experiencePart={experiencePart}
               degree={degree}
             />
-            <Footer />
+            <div className="info-footer">
+              <Footer />
+            </div>
           </div>
         </div>
       </div>

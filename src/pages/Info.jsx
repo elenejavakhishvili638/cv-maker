@@ -12,8 +12,6 @@ import Footer from "../components/shared/Footer";
 const Info = () => {
   const [image, setImage] = useState();
   const [errors, setErrors] = useState({});
-  // const { preview, saveImage } = useImageContext();
-  const [preview, setPreview] = useState();
   const [infoFormData, setInfoFormData] = useState({
     name: "",
     surname: "",
@@ -23,7 +21,6 @@ const Info = () => {
     about_me: "",
   });
   const navigate = useNavigate();
-  // const inputRef = useRef(null);
 
   useEffect(() => {
     const data = localStorage.getItem("infoFormdata");
@@ -33,16 +30,8 @@ const Info = () => {
     const image = localStorage.getItem("image");
     if (image) {
       setImage(image);
-      setPreview(image);
+      // setPreview(image);
     }
-
-    // const preview = localStorage.getItem("preview");
-    // if (preview) {
-    //   setPreview(preview);
-    // }
-    // const errors = privateValidation(infoFormData, image);
-
-    // setErrors(errors);
   }, []);
 
   const handleChange = (event) => {
@@ -59,6 +48,8 @@ const Info = () => {
 
     setErrors(errors);
 
+    console.log(errors);
+
     localStorage.setItem("infoFormdata", JSON.stringify(newInfoFormData));
   };
 
@@ -69,20 +60,14 @@ const Info = () => {
 
     const img = event.target.files[0];
 
-    setPreview(img);
-
     const reader = new FileReader();
-    // setImage(reader.result);
+
     reader.readAsDataURL(img);
-    // console.log(reader.result);
+
     reader.onload = () => {
-      // setPreview(reader.result);
       setImage(reader.result);
       localStorage.setItem("image", reader.result);
-      // localStorage.setItem("preview", reader.result);
     };
-
-    // setImage(URL.createObjectURL(img));
   };
 
   const handleSubmit = (event) => {
@@ -101,7 +86,7 @@ const Info = () => {
     }
 
     navigate("/experience", {
-      state: { infoFormData: infoFormData, image: image, preview: preview },
+      state: { infoFormData: infoFormData, image: image },
     });
   };
 
@@ -143,7 +128,9 @@ const Info = () => {
             aboutMe={infoFormData.about_me}
             image={image}
           />
-          <Footer />
+          <div className="info-footer">
+            <Footer />
+          </div>
         </div>
       </div>
     </div>

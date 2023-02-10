@@ -26,77 +26,86 @@ const ResumePage = () => {
   return (
     <div className="resume-page">
       <Link to="/">
-        <img className="back-resume" src={Arrow} alt="arrow" />
+        <img
+          className="back-resume"
+          src={Arrow}
+          alt="arrow"
+          // onClick={() => {
+          //   localStorage.clear();
+          // }}
+        />
       </Link>
       <div className="final-resume">
-        <div className="final-resume-form">
-          <div className="final-resume-personal">
-            <div className="final-resume-info">
-              <h1>
-                {name} {surname}
-              </h1>
-              <div className="resume-email">
-                <MdAlternateEmail />
-                <p>{email}</p>
-              </div>
-              <div className="resume-phone">
-                <BsTelephoneFill />
-                <p>{phone_number}</p>
-              </div>
-              <div className="about-me-resume">
-                <h3>{about_me && "ჩემ შესახებ"}</h3>
-                <div>
-                  <p>{about_me}</p>
+        <div className="resume-frame">
+          <div className="final-resume-form">
+            <div className="final-resume-personal">
+              <div className="final-resume-info">
+                <h1>
+                  {name} {surname}
+                </h1>
+                <div className="resume-email">
+                  <MdAlternateEmail />
+                  <p>{email}</p>
+                </div>
+                <div className="resume-phone">
+                  <BsTelephoneFill />
+                  <p>{phone_number}</p>
+                </div>
+                <div className="about-me-resume">
+                  <h2>{about_me && "ჩემ შესახებ"}</h2>
+                  <div>
+                    <p>{about_me}</p>
+                  </div>
                 </div>
               </div>
+              <img
+                className="resume-image"
+                src={`https://resume.redberryinternship.ge/${image}`}
+                alt="person"
+              />
             </div>
-            <img
-              className="resume-image"
-              src={`https://resume.redberryinternship.ge/${image}`}
-              alt="person"
-            />
+            <hr />
+            <div className="final-resume-experience">
+              <h1 className="final-resume-title">გამოცდილება</h1>
+              {experiences &&
+                experiences.map((item, index) => {
+                  return (
+                    <div key={index}>
+                      <p className="final-resume-experience-title">
+                        {item.position}, {item.employer}
+                      </p>
+                      <p className="final-resume-date">
+                        {item.start_date}, {item.due_date}
+                      </p>
+                      <p className="final-resume-experience-text">
+                        {item.description}
+                      </p>
+                    </div>
+                  );
+                })}
+            </div>
+            <hr />
+            <div className="final-resume-experience">
+              <h1 className="final-resume-title">განათლება</h1>
+              {educations &&
+                educations.map((item, index) => {
+                  return (
+                    <div key={index}>
+                      <p className="final-resume-experience-title">
+                        {item.institute}, {item.degree}
+                      </p>
+                      <p className="final-resume-date">{item.due_date}</p>
+                      <p className="final-resume-experience-text">
+                        {item.description}
+                      </p>
+                    </div>
+                  );
+                })}
+            </div>
           </div>
-          <hr />
-          <div className="final-resume-experience">
-            <h1 className="final-resume-title">გამოცდილება</h1>
-            {experiences &&
-              experiences.map((item, index) => {
-                return (
-                  <>
-                    <p className="final-resume-experience-title">
-                      {item.position}, {item.employer}
-                    </p>
-                    <p className="final-resume-date">
-                      {item.start_date}, {item.due_date}
-                    </p>
-                    <p className="final-resume-experience-text">
-                      {item.description}
-                    </p>
-                  </>
-                );
-              })}
+          <div className="resume-footer">
+            <Footer />
           </div>
-          <hr />
-          <div className="final-resume-experience">
-            <h1 className="final-resume-title">განათლება</h1>
-            {educations &&
-              educations.map((item, index) => {
-                return (
-                  <>
-                    <p className="final-resume-experience-title">
-                      {item.institute}, {item.degree}
-                    </p>
-                    <p className="final-resume-date">{item.due_date}</p>
-                    <p className="final-resume-experience-text">
-                      {item.description}
-                    </p>
-                  </>
-                );
-              })}
-          </div>
-        </div>
-        <div>
-          <Footer />
         </div>
       </div>
       {modal && (

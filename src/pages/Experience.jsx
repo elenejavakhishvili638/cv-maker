@@ -10,9 +10,8 @@ import experienceValidation from "../validations/ExperienceValidation";
 
 const Experience = () => {
   const location = useLocation();
-  const { infoFormData, image, preview, educationPart, educationState } =
-    location.state;
-  console.log(preview);
+  const { infoFormData, image } = location.state;
+  // console.log(preview);
   const navigate = useNavigate();
   const [experiencePart, setExperiencePart] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -25,15 +24,15 @@ const Experience = () => {
       description: "",
     },
   ]);
-  const [twoPartFormData, setTwoPartFormData] = useState({
-    name: infoFormData.name,
-    surname: infoFormData.surname,
-    email: infoFormData.email,
-    phone_number: infoFormData.phone_number,
-    image: image,
-    about_me: infoFormData.about_me,
-    experiences: [],
-  });
+  // const [twoPartFormData, setTwoPartFormData] = useState({
+  //   name: infoFormData.name,
+  //   surname: infoFormData.surname,
+  //   email: infoFormData.email,
+  //   phone_number: infoFormData.phone_number,
+  //   image: image,
+  //   about_me: infoFormData.about_me,
+  //   experiences: [],
+  // });
 
   useEffect(() => {
     const data = localStorage.getItem("experienceState");
@@ -43,8 +42,8 @@ const Experience = () => {
       setExperienceState(JSON.parse(data));
     }
 
-    const forms = { ...twoPartFormData, experiences: JSON.parse(data) };
-    setTwoPartFormData(forms);
+    // const forms = { ...twoPartFormData, experiences: JSON.parse(data) };
+    // setTwoPartFormData(forms);
   }, []);
 
   useEffect(() => {
@@ -67,6 +66,7 @@ const Experience = () => {
     newForms[index][name] = value;
 
     setExperienceState(newForms);
+    setExperiencePart(true);
 
     newForms.forEach((form, index) => {
       const formError = experienceValidation(form);
@@ -94,11 +94,11 @@ const Experience = () => {
     ]);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const forms = { ...twoPartFormData, experiences: experienceState };
-    setTwoPartFormData(forms);
-    console.log(forms);
+    // const forms = { ...twoPartFormData, experiences: experienceState };
+    // setTwoPartFormData(forms);
+    // console.log(forms);
 
     experienceState.forEach((form, index) => {
       const formError = experienceValidation(form);
@@ -125,19 +125,17 @@ const Experience = () => {
 
     navigate("/education", {
       state: {
-        twoPartFormData: twoPartFormData,
+        // twoPartFormData: twoPartFormData,
         experiencePart: experiencePart,
         infoFormData: infoFormData,
         image: image,
-        preview: preview,
-
         // preview: preview,
         experienceState: experienceState,
       },
     });
   };
 
-  console.log(preview);
+  // console.log(preview);
 
   return (
     <div className="experience-wrapper">
@@ -178,10 +176,10 @@ const Experience = () => {
               image={image}
               experienceState={experienceState}
               experiencePart={experiencePart}
-              // educationPart={educationPart}
-              // educationState={educationState}
             />
-            <Footer />
+            <div className="info-footer">
+              <Footer />
+            </div>
           </div>
         </div>
       </div>

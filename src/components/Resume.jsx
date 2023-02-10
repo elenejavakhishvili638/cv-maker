@@ -18,7 +18,7 @@ const Resume = ({
   educationPart,
   degree,
 }) => {
-  // console.log(educationPart);
+  console.log(experienceState);
   return (
     <div className="resume-wrap">
       <div className="personal-resume">
@@ -51,16 +51,23 @@ const Resume = ({
           </div>
         )}
       </div>
-      {experiencePart && (
-        <div className="experience-resume">
-          <hr className="resume-hr" />
-          <h3>გამოცდილება</h3>
-          {experienceState &&
-            experienceState.map((form, index) => {
-              return <ExperienceResume key={index} form={form} />;
-            })}
-        </div>
-      )}
+      <div className="experience-resume">
+        {experiencePart && (
+          <>
+            <hr className="resume-hr" />
+            <h3>გამოცდილება</h3>
+          </>
+        )}
+        {experienceState &&
+          experienceState.map((form, index) => {
+            return (
+              <>
+                <ExperienceResume key={index} form={form} />
+              </>
+            );
+          })}
+      </div>
+
       {educationPart && (
         <div className="education-resume">
           <hr className="education-hr" />
@@ -68,12 +75,14 @@ const Resume = ({
           {educationState &&
             educationState.map((form, index) => {
               return (
-                <EducationResume
-                  key={index}
-                  form={form}
-                  degree={degree}
-                  index={index}
-                />
+                <>
+                  <EducationResume
+                    key={index}
+                    form={form}
+                    degree={degree}
+                    index={index}
+                  />
+                </>
               );
             })}
         </div>
