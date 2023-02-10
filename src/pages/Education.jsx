@@ -7,17 +7,13 @@ import Vector from "../assets/images/Vector.png";
 import Title from "../components/shared/Title";
 import EducationForm from "../components/Education/EducationForm";
 import educationValidation from "../validations/EducationValidation";
+import { base64StringToFile } from "../components/converter";
 
 const Education = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const {
-    // twoPartFormData,
-    infoFormData,
-    image,
-    experienceState,
-    experiencePart,
-  } = location.state;
+  const { infoFormData, image, experienceState, experiencePart } =
+    location.state;
 
   const [resume, setResume] = useState({});
   const [degrees, setDegrees] = useState([]);
@@ -36,38 +32,14 @@ const Education = () => {
     },
   ]);
 
-  // const [thirdPartFormData, setThirdPartFormData] = useState({
-  //   name: twoPartFormData.name,
-  //   surname: twoPartFormData.surname,
-  //   email: twoPartFormData.email,
-  //   phone_number: twoPartFormData.phone_number.replace(/\s/g, ""),
-  //   image: "",
-  //   about_me: twoPartFormData.about_me,
-  //   experiences: twoPartFormData.experiences,
-  //   educations: [],
-  // });
-
   useEffect(() => {
-    const arr = image.split(",");
-    const mime = arr[0].match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-
-    const file = new File([u8arr], "File name", { type: mime });
-    // thirdPartFormData.image = file;
-    // setThirdPartFormData(thirdPartFormData);
+    const file = base64StringToFile(image);
     setImageFile(file);
   }, []);
 
   useEffect(() => {
     const data = localStorage.getItem("educationState");
     if (data) {
-      // console.log(JSON.parse(data));
       setEducationState(JSON.parse(data));
     }
 
@@ -75,15 +47,11 @@ const Education = () => {
     if (degree) {
       setDegree(JSON.parse(degree));
     }
-
-    // const forms = { ...thirdPartFormData, educations: JSON.parse(data) };
-    // setThirdPartFormData(forms);
   }, []);
 
   useEffect(() => {
     setEducationPart(
       Object.values(educationState).some((value) => {
-        // console.log(value);
         if (value !== "") {
           return true;
         } else {
@@ -104,7 +72,6 @@ const Education = () => {
   }, []);
 
   const handleDegree = (id, name, index) => {
-    // degree.push(name);
     setEducationPart(true);
     degree[index] = name;
     setDegree(degree);
@@ -139,7 +106,6 @@ const Education = () => {
       errors[index] = formError;
     });
 
-    // console.log(errors);
     setErrors(errors);
 
     localStorage.setItem("educationState", JSON.stringify(newForm));
@@ -157,14 +123,19 @@ const Education = () => {
     ]);
   };
 
+  useEffect(() => {
+    if (Object.keys(resume).length !== 0) {
+      navigate("/resume", {
+        state: {
+          resume: resume,
+        },
+      });
+      localStorage.clear();
+    }
+  }, [resume, navigate]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // const forms = {
-    //   ...thirdPartFormData,
-    //   educations: educationState,
-    // };
-    // setThirdPartFormData(forms);
 
     educationState.forEach((form, index) => {
       const formError = educationValidation(form);
@@ -202,7 +173,7 @@ const Education = () => {
         educationState[i].description
       );
     }
-    // data.append("experiences", thirdPartFormData.experiences);
+
     for (let i = 0; i < experienceState.length; i++) {
       data.append(`experiences[${i}][position]`, experienceState[i].position);
       data.append(`experiences[${i}][employer]`, experienceState[i].employer);
@@ -237,26 +208,11 @@ const Education = () => {
       );
 
       const res = await response.json();
-      setResume(res);
-      console.log(res);
-
-      // localStorage.setItem("finalResume", JSON.stringify(res));
+      setResume(() => res);
     } catch (error) {
       console.log(error);
     }
-
-    console.log(resume.length);
-    if (Object.keys(resume).length !== 0) {
-      navigate("/resume", {
-        state: {
-          resume: resume,
-        },
-      });
-      localStorage.clear();
-    }
   };
-
-  // console.log(imageFile, image, twoPartFormData.image, thirdPartFormData.image);
 
   return (
     <div className="education-wrapper">
@@ -300,7 +256,6 @@ const Education = () => {
               phone={infoFormData.phone_number}
               aboutMe={infoFormData.about_me}
               image={image}
-              // experienceState={twoPartFormData && twoPartFormData.experiences}
               experienceState={experienceState}
               educationPart={educationPart}
               educationState={educationState}

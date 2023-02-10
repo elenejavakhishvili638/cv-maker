@@ -21,13 +21,11 @@
 
 .vector-wrap {
   display: flex;
-  /* align-items: center; */
   margin-top: 10.5px;
   justify-content: center;
 }
 
 .back {
-  /* display: flex; */
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -52,14 +50,12 @@
   justify-content: center;
   margin-left: 150px;
   flex-direction: column;
-  margin-top: 77px;
+  margin-top: 73px;
 }
 
 .private-info-resume {
   flex-direction: column;
   width: 100%;
-  /* display: flex; */
-  /* align-items: center; */
 }
 
 .private-info-resume-wrap {

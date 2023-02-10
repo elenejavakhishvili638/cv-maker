@@ -60,11 +60,7 @@ const Resume = ({
         )}
         {experienceState &&
           experienceState.map((form, index) => {
-            return (
-              <>
-                <ExperienceResume key={index} form={form} />
-              </>
-            );
+            return <ExperienceResume key={index} form={form} />;
           })}
       </div>
 
@@ -75,14 +71,12 @@ const Resume = ({
           {educationState &&
             educationState.map((form, index) => {
               return (
-                <>
-                  <EducationResume
-                    key={index}
-                    form={form}
-                    degree={degree}
-                    index={index}
-                  />
-                </>
+                <EducationResume
+                  key={index}
+                  form={form}
+                  degree={degree}
+                  index={index}
+                />
               );
             })}
         </div>
