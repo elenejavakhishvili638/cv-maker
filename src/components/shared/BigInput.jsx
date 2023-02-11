@@ -19,7 +19,15 @@ const BigInput = ({
 }) => {
   return (
     <div className="technical-wrap">
-      <label className="technical-title">{label}</label>
+      <label
+        className={
+          (error && error !== "Success"
+            ? "label-error"
+            : error === "Success" && "technical-title") || "technical-title"
+        }
+      >
+        {label}
+      </label>
       <div className="big-input-wrapper">
         <div
           className={
@@ -41,7 +49,7 @@ const BigInput = ({
           {(error && error !== "Success" ? (
             ""
           ) : error === "Success" ? (
-            <BsFillCheckCircleFill className="big-success-logo" />
+            <BsFillCheckCircleFill className="success-logo" />
           ) : (
             ""
           )) || ""}
@@ -50,7 +58,7 @@ const BigInput = ({
           ? ""
           : error &&
             error !== "Success" && (
-              <BsExclamationTriangleFill className="big-invalid-logo" />
+              <BsExclamationTriangleFill className="big-invalid-logo invalid-logo" />
             )}
       </div>
       <p>{(error === "Success" ? defultText : text) || defultText}</p>

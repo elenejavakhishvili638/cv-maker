@@ -67,7 +67,7 @@ const Information = ({
         ) : (
           errors.image &&
           errors.image !== "Success" && (
-            <BsExclamationTriangleFill className="invalid-logo" />
+            <BsExclamationTriangleFill className="invalid-logo image-logo" />
           )
         )}
       </div>

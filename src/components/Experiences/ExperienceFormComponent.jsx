@@ -2,10 +2,9 @@ import React from "react";
 import BigInput from "../shared/BigInput";
 import CalendarInput from "../shared/CalendarInput";
 import "./ExperienceFormComponent.css";
+import { BsExclamationTriangleFill } from "react-icons/bs";
 
 const ExperienceFormComponent = ({ handleChange, form, index, errors }) => {
-  // console.log(errors);
-
   const correct =
     errors[index] &&
     errors[index].description === "Success" &&
@@ -65,18 +64,41 @@ const ExperienceFormComponent = ({ handleChange, form, index, errors }) => {
         />
       </div>
       <div className="textarea">
-        <p>აღწერა</p>
-        <textarea
-          name="description"
-          className={`${
-            correct || incorrect || "experience-description-text-form"
-          }`}
-          placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
-          value={form.description}
-          onChange={(event) => {
-            handleChange(event, index);
-          }}
-        />
+        <p
+          className={
+            (errors[index] &&
+            errors[index].description &&
+            errors[index] &&
+            errors[index].description !== "Success"
+              ? "label-error"
+              : errors[index] &&
+                errors[index].description === "Success" &&
+                "technical-title") || "technical-title"
+          }
+        >
+          აღწერა
+        </p>
+        <div className="textarea-wrapper">
+          <textarea
+            name="description"
+            className={`${
+              correct || incorrect || "experience-description-text-form"
+            }`}
+            placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
+            value={form.description}
+            onChange={(event) => {
+              handleChange(event, index);
+            }}
+          />
+          {errors[index] && errors[index].description === "Success"
+            ? ""
+            : errors[index] &&
+              errors[index].description &&
+              errors[index] &&
+              errors[index].description !== "Success" && (
+                <BsExclamationTriangleFill className="textarea-invalid-logo invalid-logo" />
+              )}
+        </div>
       </div>
       <hr className="experience-hr" />
     </>
@@ -84,14 +106,3 @@ const ExperienceFormComponent = ({ handleChange, form, index, errors }) => {
 };
 
 export default ExperienceFormComponent;
-
-// `experience-description-text ${
-//   errors[index] &&
-//   errors[index].description &&
-//   errors[index].description !== "Success"
-//     ? "experience-description-text-error"
-//     : (errors[index] &&
-//         errors[index].description === "Success" &&
-//         "experience-description-text-correct") ||
-//       "experience-description-text-default"
-// }`

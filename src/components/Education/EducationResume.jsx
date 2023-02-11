@@ -3,7 +3,7 @@ import "./educationResume.css";
 
 const EducationResume = ({ form, degree, index }) => {
   const { institute, due_date, description } = form;
-  // console.log(degree);
+
   return (
     <div className="education-resume-component">
       {institute && institute.length !== 0 && (

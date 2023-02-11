@@ -3,6 +3,7 @@ import "./educationFormComponent.css";
 import BigInput from "../shared/BigInput";
 import CalendarInput from "../shared/CalendarInput";
 import DegreeComponent from "./DegreeComponent";
+import { BsExclamationTriangleFill } from "react-icons/bs";
 
 const EducationFormComponent = ({
   degrees,
@@ -13,7 +14,6 @@ const EducationFormComponent = ({
   handleChange,
   errors,
 }) => {
-  // console.log(errors);
   const correct =
     errors[index] &&
     errors[index].description === "Success" &&
@@ -23,6 +23,7 @@ const EducationFormComponent = ({
     errors[index].description &&
     errors[index].description !== "Success" &&
     "experience-description-text-error ";
+
   return (
     <>
       <div className="education-description">
@@ -58,17 +59,39 @@ const EducationFormComponent = ({
         />
       </div>
       <div className="textarea-education">
-        <p>აღწერა</p>
-        <textarea
-          // className="education-textarea"
-          name="description"
-          placeholder="განათლების აღწერა"
-          value={form.description}
-          onChange={(event) => {
-            handleChange(event, index);
-          }}
-          className={`${correct || incorrect || "education-textarea"}`}
-        />
+        <p
+          className={
+            (errors[index] &&
+            errors[index].description &&
+            errors[index] &&
+            errors[index].description !== "Success"
+              ? "label-error"
+              : errors[index] &&
+                errors[index].description === "Success" &&
+                "technical-title") || "technical-title"
+          }
+        >
+          აღწერა
+        </p>
+        <div className="textarea-wrapper">
+          <textarea
+            name="description"
+            placeholder="განათლების აღწერა"
+            value={form.description}
+            onChange={(event) => {
+              handleChange(event, index);
+            }}
+            className={`${correct || incorrect || "education-textarea"}`}
+          />
+          {errors[index] && errors[index].description === "Success"
+            ? ""
+            : errors[index] &&
+              errors[index].description &&
+              errors[index] &&
+              errors[index].description !== "Success" && (
+                <BsExclamationTriangleFill className="textarea-invalid-logo-education invalid-logo" />
+              )}
+        </div>
       </div>
       <hr className="experience-hr" />
     </>

@@ -33,6 +33,7 @@ const ExperienceForm = ({
           <Link to="/info" className="first-next">
             უკან
           </Link>
+
           <button type="submit" className="first-next">
             შემდეგი
           </button>

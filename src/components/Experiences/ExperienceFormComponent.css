@@ -28,6 +28,15 @@
   padding-left: 16px;
 }
 
+.textarea-wrapper {
+  position: relative;
+}
+
+.textarea-invalid-logo {
+  left: 812px;
+  top: 36px;
+}
+
 /* Errors */
 
 .experience-description-text-error {

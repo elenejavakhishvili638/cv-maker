@@ -1,6 +1,9 @@
 import React from "react";
 import "./smallInput.css";
-import { BsFillCheckCircleFill } from "react-icons/bs";
+import {
+  BsFillCheckCircleFill,
+  BsExclamationTriangleFill,
+} from "react-icons/bs";
 
 const SmallInput = ({
   label,
@@ -25,31 +28,39 @@ const SmallInput = ({
       >
         {label}
       </label>
-      <div
-        className={
-          (error && error !== "Success"
-            ? "input-error first-name-input"
-            : error === "Success"
-            ? "input-success first-name-input"
-            : "first-name-input") || "first-name-input"
-        }
-      >
-        <input
-          type={type}
-          id={name}
-          name={name}
-          value={value}
-          placeholder={placeholder}
-          onChange={handleChange}
-          // onBlur={handleBlur}
-        />
-        {(error && error !== "Success" ? (
-          ""
-        ) : error === "Success" ? (
-          <BsFillCheckCircleFill className="success-logo" />
-        ) : (
-          ""
-        )) || ""}
+      <div className="small-input-wrapper">
+        <div
+          className={
+            (error && error !== "Success"
+              ? "input-error first-name-input"
+              : error === "Success"
+              ? "input-success first-name-input"
+              : "first-name-input") || "first-name-input"
+          }
+        >
+          <input
+            type={type}
+            id={name}
+            name={name}
+            value={value}
+            placeholder={placeholder}
+            onChange={handleChange}
+            // onBlur={handleBlur}
+          />
+          {(error && error !== "Success" ? (
+            ""
+          ) : error === "Success" ? (
+            <BsFillCheckCircleFill className="success-logo" />
+          ) : (
+            ""
+          )) || ""}
+        </div>
+        {error === "Success"
+          ? ""
+          : error &&
+            error !== "Success" && (
+              <BsExclamationTriangleFill className="small-invalid-logo invalid-logo" />
+            )}
       </div>
       <p>{(error === "Success" ? defultText : text) || defultText}</p>
     </div>

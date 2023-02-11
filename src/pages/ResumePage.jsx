@@ -26,14 +26,7 @@ const ResumePage = () => {
   return (
     <div className="resume-page">
       <Link to="/">
-        <img
-          className="back-resume"
-          src={Arrow}
-          alt="arrow"
-          // onClick={() => {
-          //   localStorage.clear();
-          // }}
-        />
+        <img className="back-resume" src={Arrow} alt="arrow" />
       </Link>
       <div className="final-resume">
         <div className="resume-frame">
@@ -75,7 +68,7 @@ const ResumePage = () => {
                         {item.position}, {item.employer}
                       </p>
                       <p className="final-resume-date">
-                        {item.start_date}, {item.due_date}
+                        {item.start_date} - {item.due_date}
                       </p>
                       <p className="final-resume-experience-text">
                         {item.description}

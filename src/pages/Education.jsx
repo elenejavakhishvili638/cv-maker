@@ -14,14 +14,11 @@ const Education = () => {
   const navigate = useNavigate();
   const { infoFormData, image, experienceState, experiencePart } =
     location.state;
-
   const [resume, setResume] = useState({});
   const [degrees, setDegrees] = useState([]);
-
   const [degree, setDegree] = useState([]);
   const [errors, setErrors] = useState([]);
   const [educationPart, setEducationPart] = useState(false);
-  console.log(experiencePart);
   const [imageFile, setImageFile] = useState();
   const [educationState, setEducationState] = useState([
     {
@@ -75,7 +72,7 @@ const Education = () => {
     setEducationPart(true);
     degree[index] = name;
     setDegree(degree);
-    console.log(degree);
+
     const newDegrees = [...educationState];
     newDegrees[index]["degree_id"] = id;
 
@@ -87,8 +84,6 @@ const Education = () => {
     });
 
     setErrors(errors);
-
-    console.log(degree[index], degree);
 
     localStorage.setItem("educationState", JSON.stringify(newDegrees));
     localStorage.setItem("degree", JSON.stringify(degree));
@@ -164,36 +159,25 @@ const Education = () => {
 
     data.append("image", imageFile);
 
-    for (let i = 0; i < educationState.length; i++) {
-      data.append(`educations[${i}][institute]`, educationState[i].institute);
-      data.append(`educations[${i}][degree_id]`, educationState[i].degree_id);
-      data.append(`educations[${i}][due_date]`, educationState[i].due_date);
-      data.append(
-        `educations[${i}][description]`,
-        educationState[i].description
-      );
-    }
+    educationState.forEach((education, index) => {
+      for (let edu in education) {
+        data.append(`educations[${index}][${edu}]`, education[edu]);
+      }
+    });
 
-    for (let i = 0; i < experienceState.length; i++) {
-      data.append(`experiences[${i}][position]`, experienceState[i].position);
-      data.append(`experiences[${i}][employer]`, experienceState[i].employer);
-      data.append(
-        `experiences[${i}][start_date]`,
-        experienceState[i].start_date
-      );
-      data.append(`experiences[${i}][due_date]`, experienceState[i].due_date);
-      data.append(
-        `experiences[${i}][description]`,
-        experienceState[i].description
-      );
-    }
-    data.append("name", infoFormData.name);
-    data.append("surname", infoFormData.surname);
-    data.append("about_me", infoFormData.about_me);
-    data.append("email", infoFormData.email);
-    data.append("phone_number", infoFormData.phone_number.replace(/\s/g, ""));
+    experienceState.forEach((experience, index) => {
+      for (let exp in experience) {
+        data.append(`experiences[${index}][${exp}]`, experience[exp]);
+      }
+    });
 
-    console.log(data);
+    for (let info in infoFormData) {
+      if (info === "phone_number") {
+        data.append("phone_number", infoFormData[info].replace(/\s/g, ""));
+      } else {
+        data.append(info, infoFormData[info]);
+      }
+    }
 
     try {
       const response = await fetch(

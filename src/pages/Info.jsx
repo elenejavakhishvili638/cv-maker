@@ -12,6 +12,7 @@ import Footer from "../components/shared/Footer";
 const Info = () => {
   const [image, setImage] = useState();
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
   const [infoFormData, setInfoFormData] = useState({
     name: "",
     surname: "",
@@ -20,7 +21,8 @@ const Info = () => {
     image: "",
     about_me: "",
   });
-  const navigate = useNavigate();
+
+  //Save infoFormData in local storage
 
   useEffect(() => {
     const data = localStorage.getItem("infoFormdata");
@@ -30,9 +32,10 @@ const Info = () => {
     const image = localStorage.getItem("image");
     if (image) {
       setImage(image);
-      // setPreview(image);
     }
   }, []);
+
+  //Handle change of form
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -41,29 +44,24 @@ const Info = () => {
       ...infoFormData,
       [name]: value,
     };
-    console.log(name, value);
     setInfoFormData(newInfoFormData);
 
     const errors = privateValidation(newInfoFormData, image);
-
     setErrors(errors);
-
-    console.log(errors);
 
     localStorage.setItem("infoFormdata", JSON.stringify(newInfoFormData));
   };
 
+  //Handle image upload
+
   const handleImageUpload = (event) => {
     const dataWithNewImage = { ...infoFormData, image: event.target.files[0] };
-
     setInfoFormData(dataWithNewImage);
 
     const img = event.target.files[0];
 
     const reader = new FileReader();
-
     reader.readAsDataURL(img);
-
     reader.onload = () => {
       setImage(reader.result);
       localStorage.setItem("image", reader.result);
@@ -73,12 +71,10 @@ const Info = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const errors = privateValidation(infoFormData, image);
-    console.log("dd");
 
     setErrors(errors);
     if (errors && Object.keys(errors).length !== 0) {
       for (const [key, value] of Object.entries(errors)) {
-        console.log(Object.entries(errors));
         if (value !== "Success") {
           return;
         }

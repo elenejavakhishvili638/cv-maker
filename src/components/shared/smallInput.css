@@ -5,12 +5,9 @@
 }
 
 .first-name label {
-  /* margin-top: 77px; */
-  font-family: HelveticaNeue;
-  font-style: normal;
   font-weight: 700;
   font-size: 16px;
-  line-height: 21px;
+  /* line-height: 21px; */
 }
 
 .first-name-label {
@@ -41,8 +38,6 @@
 }
 
 .first-name-input::placeholder {
-  font-family: HelveticaNeue;
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 21px;
@@ -50,13 +45,20 @@
 }
 
 .first-name p {
-  font-family: HelveticaNeue;
-  font-style: normal;
   font-weight: 300;
   font-size: 14px;
   line-height: 21px;
   color: #2e2e2e;
   margin-bottom: 0;
+}
+
+.small-input-wrapper {
+  position: relative;
+}
+
+.small-invalid-logo {
+  left: 380px;
+  top: 22px;
 }
 
 /* Errors */
@@ -75,15 +77,4 @@
 .input-success:focus {
   border: transparent;
   outline: none;
-}
-
-.label-error {
-  color: #e52f2f;
-}
-
-.success-logo {
-  margin-right: 15px;
-  color: #98e37e;
-  width: 16.5px;
-  height: 16.5px;
 }

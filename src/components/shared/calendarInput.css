@@ -5,8 +5,6 @@
 }
 
 .calendar-input-container label {
-  font-family: HelveticaNeue;
-  font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 21px;
@@ -14,7 +12,6 @@
 
 .calendar-input-label {
   color: #000000;
-  margin-bottom: 8px;
 }
 
 .calendar-input-container input {
@@ -29,6 +26,16 @@
 
 .calendar-input-default {
   border: 1px solid #bcbcbc;
+}
+
+.calendar-input-wrap {
+  position: relative;
+  margin-top: 8px;
+}
+
+.calendar-invalid-logo {
+  left: 385px;
+  top: 13px;
 }
 
 /* Errors */

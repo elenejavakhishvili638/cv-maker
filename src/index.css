@@ -13,3 +13,22 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.invalid-logo {
+  color: #f02424;
+  height: 19px;
+  width: 21px;
+  position: absolute;
+}
+
+.success-logo {
+  margin-right: 15px;
+  color: #98e37e;
+  width: 16.5px;
+  height: 16.5px;
+}
+
+.label-error {
+  color: #e52f2f;
+  font-weight: 700;
+}

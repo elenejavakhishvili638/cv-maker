@@ -24,11 +24,12 @@ const Experience = () => {
     },
   ]);
 
+  //Save Experience array in local storage
+
   useEffect(() => {
     const data = localStorage.getItem("experienceState");
 
     if (data) {
-      console.log(JSON.parse(data));
       setExperienceState(JSON.parse(data));
     }
   }, []);
@@ -58,7 +59,7 @@ const Experience = () => {
       const formError = experienceValidation(form);
       errors[index] = formError;
     });
-    // console.log(errors);
+
     setErrors(errors);
 
     localStorage.setItem("experienceState", JSON.stringify(newForms));
@@ -136,6 +137,7 @@ const Experience = () => {
             experienceState={experienceState}
             errors={errors}
             handleSubmit={handleSubmit}
+            experiencePart={experiencePart}
           />
         </div>
       </div>

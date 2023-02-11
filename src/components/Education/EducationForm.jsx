@@ -14,9 +14,7 @@ const EducationForm = ({
   errors,
   infoFormData,
   image,
-  educationPart,
 }) => {
-  // console.log(degree, degrees);
   return (
     <form className="education-form" onSubmit={handleSubmit}>
       {educationState &&
@@ -45,8 +43,6 @@ const EducationForm = ({
             state={{
               infoFormData: infoFormData,
               image: image,
-              // educationPart: educationPart,
-              // educationState: educationState,
             }}
           >
             უკან

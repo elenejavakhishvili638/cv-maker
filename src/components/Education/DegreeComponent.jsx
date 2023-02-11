@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./degreeComponent.css";
+import { BsExclamationTriangleFill } from "react-icons/bs";
 
 const DegreeComponent = ({ degrees, degree, handleDegree, index, error }) => {
   const [selectedDegree, setSelectedDegree] = useState(false);
@@ -9,7 +10,16 @@ const DegreeComponent = ({ degrees, degree, handleDegree, index, error }) => {
 
   return (
     <div className="degree-component-wrap">
-      <label>ხარისხი</label>
+      <label
+        className={
+          (error && error && error && error !== "Success"
+            ? "label-error"
+            : error && error === "Success" && "technical-title") ||
+          "technical-title"
+        }
+      >
+        ხარისხი
+      </label>
       <div
         className={`${correct || incorrect || "dropdown dropdown-border"}`}
         onClick={() => setSelectedDegree(!selectedDegree)}
@@ -29,7 +39,6 @@ const DegreeComponent = ({ degrees, degree, handleDegree, index, error }) => {
                     <button
                       className="dropdown-item"
                       onClick={() => {
-                        console.log(degree.id, index);
                         handleDegree(degree.id, degree.title, index);
                       }}
                     >
@@ -40,6 +49,12 @@ const DegreeComponent = ({ degrees, degree, handleDegree, index, error }) => {
               })}
           </div>
         )}
+        {error === "Success"
+          ? ""
+          : error &&
+            error !== "Success" && (
+              <BsExclamationTriangleFill className="degree-invalid-logo" />
+            )}
       </div>
     </div>
   );

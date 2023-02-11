@@ -1,6 +1,6 @@
-.education-description {
+/* .education-description {
   margin-top: 42px;
-}
+} */
 
 .education-info {
   display: flex;
@@ -29,4 +29,9 @@
 
 .education-textarea {
   border: 1px solid #bcbcbc;
+}
+
+.textarea-invalid-logo-education {
+  left: 812px;
+  top: 70px;
 }

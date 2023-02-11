@@ -1,5 +1,6 @@
 import React from "react";
 import "./calendarInput.css";
+import { BsExclamationTriangleFill } from "react-icons/bs";
 
 const CalendarInput = ({
   label,
@@ -18,20 +19,37 @@ const CalendarInput = ({
 
   return (
     <div className="calendar-input-container">
-      <label className="calendar-input-label">{label}</label>
-      <input
+      <label
         className={
-          correct ||
-          incorrect ||
-          "calendar-input-default calendar-input-default-color"
+          (error && error !== "Success"
+            ? "label-error"
+            : error === "Success" && "calendar-input-label") ||
+          "calendar-input-label"
         }
-        value={value}
-        name={name}
-        type={type}
-        onChange={(event) => {
-          handleChange(event, index);
-        }}
-      />
+      >
+        {label}
+      </label>
+      <div className="calendar-input-wrap">
+        <input
+          className={
+            correct ||
+            incorrect ||
+            "calendar-input-default calendar-input-default-color"
+          }
+          value={value}
+          name={name}
+          type={type}
+          onChange={(event) => {
+            handleChange(event, index);
+          }}
+        />
+        {error === "Success"
+          ? ""
+          : error &&
+            error !== "Success" && (
+              <BsExclamationTriangleFill className="calendar-invalid-logo invalid-logo" />
+            )}
+      </div>
     </div>
   );
 };
