@@ -55,7 +55,6 @@ const Information = ({
           ref={ref}
           style={{ display: "none" }}
           name="image"
-          // accept=".jpg,.png,.jpeg"
           accept="image/*"
           onChange={handleImageUpload}
         />
@@ -94,7 +93,7 @@ const Information = ({
           error={errors.email}
         />
         <BigInput
-          label="მობილური ნომერი"
+          label="მობილურის ნომერი"
           type="text"
           name="phone_number"
           text={errors && errors.phone_number}

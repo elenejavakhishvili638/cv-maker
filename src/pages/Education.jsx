@@ -32,7 +32,7 @@ const Education = () => {
   useEffect(() => {
     const file = base64StringToFile(image);
     setImageFile(file);
-  }, []);
+  }, [image]);
 
   useEffect(() => {
     const data = localStorage.getItem("educationState");
