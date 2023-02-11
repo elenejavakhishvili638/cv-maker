@@ -78,13 +78,16 @@ const Experience = () => {
     ]);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
+
     experienceState.forEach((form, index) => {
       const formError = experienceValidation(form);
+      console.log(formError);
       errors[index] = formError;
     });
-    setErrors(errors);
+
+    setErrors([...errors]);
 
     let goToNextPage = true;
     errors.forEach((error) => {

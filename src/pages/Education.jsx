@@ -136,7 +136,8 @@ const Education = () => {
       const formError = educationValidation(form);
       errors[index] = formError;
     });
-    setErrors(errors);
+
+    setErrors([...errors]);
 
     let goToNextPage = true;
     errors.forEach((error) => {
