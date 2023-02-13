@@ -134,3 +134,45 @@ const Info = () => {
 };
 
 export default Info;
+
+// if (newValue.length > 17) {
+//   newValue = newValue.slice(0, 17);
+// }
+
+// newValue = newValue.replace(/^\+/, "");
+// newValue = newValue.replace(/(\d{3})(\d{2})(\d{2})/, "$1 $2 $3");
+// newValue = newValue.replace(/(\d{3})\s(\d{2})\s(\d{2})/, "$1 $2 $3");
+// newValue = "+" + newValue;
+
+// if (newValue.length > 17) {
+//   newValue = newValue.slice(0, 17);
+// }
+
+// newValue = newValue.replace(/^\+/, "");
+
+// newValue = newValue.replace(/^\+/, "");
+// newValue = newValue.replace(
+//   /(\d{3})(\d{3})(\d{2})(\d{2})(\d{2})/,
+//   "$1 $2 $3 $4 $5"
+// );
+// newValue = "+" + newValue;
+
+// newValue = newValue.replace(
+//   /(\d{3})(\d{3})(\d{2})(\d{2})(\d{2})/,
+//   "$1 $2 $3 $4 $5"
+// );
+// newValue = newValue.replace(
+//   /(\d{3})\s(\d{3})\s(\d{2})\s(\d{2})\s(\d{2})/,
+//   "$1 $2 $3 $4 $5"
+// );
+
+// newValue = "+" + newValue;
+
+// let newInfoFormData;
+// if (name === "phone_number") {
+//   let newValue = value;
+
+//   newInfoFormData = { ...infoFormData, phone_number: newValue };
+// } else {
+//   newInfoFormData = { ...infoFormData, [name]: value };
+// }

@@ -32,6 +32,7 @@ const Resume = ({
               <MdAlternateEmail /> <p>{email}</p>
             </div>
           )}
+          {/* phone !== "+" && */}
           {phone && phone.length !== 0 && (
             <div className="phone">
               <BsTelephoneFill /> <p>{phone}</p>

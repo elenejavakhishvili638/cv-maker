@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Footer from "../components/shared/Footer";
 import "./resumePage.css";
@@ -6,6 +6,7 @@ import Arrow from ".././assets/images/Group 4.png";
 import { GrFormClose } from "react-icons/gr";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsTelephoneFill } from "react-icons/bs";
+import { formatNumber } from "../components/phoneFormat";
 
 const ResumePage = () => {
   const [modal, setModal] = useState(true);
@@ -42,7 +43,7 @@ const ResumePage = () => {
                 </div>
                 <div className="resume-phone">
                   <BsTelephoneFill />
-                  <p>{phone_number}</p>
+                  <p>{formatNumber(phone_number)}</p>
                 </div>
                 <div className="about-me-resume">
                   <h2>{about_me && "ჩემ შესახებ"}</h2>
